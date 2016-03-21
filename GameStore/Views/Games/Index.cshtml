@@ -1,0 +1,22 @@
+﻿<script src="~/Scripts/jquery-2.2.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var actionUrl = '@Url.Action("GetAllGames","Games")';
+        $.getJSON(actionUrl, displayData);
+    });
+
+    function displayData(response) {
+        for (var i = 0; i < response.length; i++) {
+            $("#movieList").append(
+                "<li>"+
+                    "<a href=\"/Games/Details?gameId=" + response[i].Id + "\">" + response[i].Name + "</a>"
+                    + " "+ response[i].Description + " " + response[i].Id
+                    +"</li>"
+            );
+        }
+    }
+</script>
+
+<h3>Games:</h3>
+@Html.ActionLink("Create new game", "Details", "Games")
+<ul id="movieList"></ul>

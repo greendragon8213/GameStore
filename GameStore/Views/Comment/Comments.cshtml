@@ -1,0 +1,38 @@
+﻿<script src="~/Scripts/jquery-2.2.1.min.js"></script>
+<script src="~/Scripts/MicrosoftAjax.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var actionUrl = '@Url.Action("GetCommentsByGameId", "Comment", new {gameId = @ViewBag.GameId})';
+        $.getJSON(actionUrl, displayData);
+    });
+
+    function displayData(response) {
+        for (var i = 0; i < response.length; i++) {
+            $("#commentList").append(
+                "<li>"
+                    + response[i].Body + " " + response[i].CreationDate + response[i].Name +
+                    "<a href=\"javascript:AddParent("+response[i].Id+");\">Respond</a>"
+                    + "</li>"
+            );
+        }
+    }
+
+    function AddParent(id) {
+        //focusedElement
+        alert("You will respond to comment with id = " + id);
+        $("input[name*='parentCommentId']").val(id);
+    }
+</script>
+
+<h3>Comments</h3>
+<ul id="commentList"></ul>
+@using (Ajax.BeginForm("NewComment", new AjaxOptions { }))
+{
+    <input type="hidden" name="gameId" value=@ViewBag.GameId />
+    <input type="hidden" name="parentCommentId" value="-1">
+    <input type="text" name="content"/>
+    <input type="submit" value="Send" />
+}
+
+    

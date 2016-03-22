@@ -42,7 +42,7 @@ namespace GameStore.Models
             }
         }
 
-        internal static void Add(string content, int gameId, int parentCommentId)
+        internal static void Add(string content, int gameId, int? parentCommentId = null)
         {
             if (content.IsEmpty())
             {
@@ -57,7 +57,7 @@ namespace GameStore.Models
                     Body = content,
                     GameId = gameId,
                     //ToDo
-                    ParentCommentId = (parentCommentId == -1) ? (int?)null : parentCommentId,
+                    ParentCommentId = parentCommentId,
                     CreationDate = DateTime.Now
                 };
 

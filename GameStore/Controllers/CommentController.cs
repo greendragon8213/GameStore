@@ -26,7 +26,7 @@ namespace GameStore.Controllers
         }
 
         [HttpPost]
-        public ActionResult NewComment(string content, int gameId, int parentCommentId)
+        public ActionResult NewComment(string content, int gameId, int? parentCommentId)
         {
             Comment.Add(content, gameId, parentCommentId);
             return RedirectToAction("Index", "Games");

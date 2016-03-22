@@ -34,14 +34,12 @@ namespace GameStore.Controllers
             return Json(game, JsonRequestBehavior.AllowGet);
         }
 
-
-        //[AcceptVerbs(HttpVerbs.Post)]
         [HttpPost]
         public ActionResult Update(Game game)
         {
             Game.Update(game);
-            //return RedirectToAction("Index");
-            return Index();
+            return RedirectToAction("Index");
+            //return Index();
             //return RedirectToAction("Details", new {gameId = game.Id});
         }
         
@@ -49,7 +47,8 @@ namespace GameStore.Controllers
         public ActionResult Remove(int gameId)
         {
             Game.Remove(gameId);
-            return RedirectToAction("Index");
+            return Json(Url.Action("Index","Games"));
+            //return RedirectToAction("Index");
         }
 
         public ActionResult Download(int gameId)

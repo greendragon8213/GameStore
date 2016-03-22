@@ -15,13 +15,26 @@
         $("input[name*='Key']").val(response.Key);
         $("input[name*='Description']").val(response.Description);
     }
+    
+    function OnSuccessDelete() {
+        alert("Запрос Delete был успешно выполнен.\n");
+        @*var url = '@Url.Action("Details", "Branch", new { id = "__id__" })';*@
+        var url = '@Url.Action("Index", "Games")';
+        window.location.href = url;
+    }
+    
+    function OnSuccessUpdate() {
+        alert("Запрос Update был успешно выполнен.\n");
+        var url = '@Url.Action("Details", "Games", new {gameId = @ViewBag.GameId})';
+        window.location.href = url;
+    }
 </script>
 
 <h3>Game details</h3>
 <div>
     @*@ViewBag.GameId*@
     
-    @using (Ajax.BeginForm("Remove", new AjaxOptions { }))
+    @using (Ajax.BeginForm("Remove", new AjaxOptions { OnSuccess = "OnSuccessDelete" }))
     {
         <input type="hidden" name="gameId" value=@ViewBag.GameId />
         <input type="submit" value="Remove game" />
@@ -33,7 +46,7 @@
         <input type="submit" value="Download" />
     }
 
-    @using (Ajax.BeginForm("Update", new AjaxOptions { }))
+    @using (Ajax.BeginForm("Update", new AjaxOptions { OnSuccess = "OnSuccessUpdate" }))
     {
         <input type="hidden" name="Id" value=@ViewBag.GameId />
         @Html.Label("Name")
@@ -55,11 +68,5 @@
                             HttpMethod = "GET"
                         })
     </div>
-
-    @*@using (Ajax.BeginForm("Comments", "Comment", new AjaxOptions { UpdateTargetId = "GameComments" }))
-    {
-        <input type="hidden" name="gameId" value=@ViewBag.GameId />
-        <input type="submit" value="Show comments" />
-    }*@
 
 </div>

@@ -1,6 +1,7 @@
-﻿<script src="~/Scripts/jquery-2.2.1.min.js"></script>
-<script src="~/Scripts/MicrosoftAjax.js"></script>
-<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+﻿@*if you include that script multiple times 
+    it will subscribe on the submit event multiple times 
+    so you will get multiple submit with a single click.*@
+
 <script type="text/javascript">
     $(document).ready(function () {
         var actionUrl = '@Url.Action("GetCommentsByGameId", "Comment", new {gameId = @ViewBag.GameId})';

@@ -34,11 +34,14 @@ namespace GameStore.Controllers
             return Json(game, JsonRequestBehavior.AllowGet);
         }
 
+
+        //[AcceptVerbs(HttpVerbs.Post)]
         [HttpPost]
         public ActionResult Update(Game game)
         {
             Game.Update(game);
-            return RedirectToAction("Index");
+            //return RedirectToAction("Index");
+            return Index();
             //return RedirectToAction("Details", new {gameId = game.Id});
         }
         

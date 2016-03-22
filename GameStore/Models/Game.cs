@@ -104,7 +104,14 @@ namespace GameStore.Models
                     return;
                 }
 
-                // ToDo remove related records
+                context.Entry(game).Collection("Comments").Load();
+                game.Comments.ToList().ForEach(t => context.Comments.Remove(t));
+
+                context.Entry(game).Collection("GameToGanre").Load();
+                game.GameToGanre.ToList().ForEach(t => context.GameToGanre.Remove(t));
+
+                context.Entry(game).Collection("GameToPlatformType").Load();
+                game.GameToPlatformType.ToList().ForEach(t => context.GameToPlatformType.Remove(t));
 
                 context.Games.Remove(game);
                 context.SaveChanges();

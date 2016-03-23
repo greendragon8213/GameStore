@@ -11,7 +11,7 @@
 Function.__typeName = 'Function';
 Function.__class = true;
 Function.createCallback = function Function$createCallback(method, context) {
-    /// <summary locid="M:J#Function.createCallback" />
+    /// <summary locid="M:J#Function.AddCallback" />
     /// <param name="method" type="Function"></param>
     /// <param name="context" mayBeNull="true"></param>
     /// <returns type="Function"></returns>
@@ -34,7 +34,7 @@ Function.createCallback = function Function$createCallback(method, context) {
     }
 }
 Function.createDelegate = function Function$createDelegate(instance, method) {
-    /// <summary locid="M:J#Function.createDelegate" />
+    /// <summary locid="M:J#Function.AddDelegate" />
     /// <param name="instance" mayBeNull="true"></param>
     /// <param name="method" type="Function"></param>
     /// <returns type="Function"></returns>
@@ -225,7 +225,7 @@ Function._validateParameterType = function Function$_validateParameterType(param
 Error.__typeName = 'Error';
 Error.__class = true;
 Error.create = function Error$create(message, errorInfo) {
-    /// <summary locid="M:J#Error.create" />
+    /// <summary locid="M:J#Error.Add" />
     /// <param name="message" type="String" optional="true" mayBeNull="true"></param>
     /// <param name="errorInfo" optional="true" mayBeNull="true"></param>
     /// <returns type="Error"></returns>
@@ -1043,7 +1043,7 @@ Array.add = Array.enqueue = function Array$enqueue(array, item) {
     array[array.length] = item;
 }
 Array.addRange = function Array$addRange(array, items) {
-    /// <summary locid="M:J#Array.addRange" />
+    /// <summary locid="M:J#Array.CreateRange" />
     /// <param name="array" type="Array" elementMayBeNull="true"></param>
     /// <param name="items" type="Array" elementMayBeNull="true"></param>
     var e = Function._validateParams(arguments, [
@@ -1730,7 +1730,7 @@ Sys.CollectionChange = function Sys$CollectionChange(action, newItems, newStarti
 Sys.CollectionChange.registerClass("Sys.CollectionChange");
 Sys.NotifyCollectionChangedAction = function Sys$NotifyCollectionChangedAction() {
     /// <summary locid="M:J#Sys.NotifyCollectionChangedAction.#ctor" />
-    /// <field name="add" type="Number" integer="true" static="true" locid="F:J#Sys.NotifyCollectionChangedAction.add"></field>
+    /// <field name="Create" type="Number" integer="true" static="true" locid="F:J#Sys.NotifyCollectionChangedAction.Create"></field>
     /// <field name="remove" type="Number" integer="true" static="true" locid="F:J#Sys.NotifyCollectionChangedAction.remove"></field>
     /// <field name="reset" type="Number" integer="true" static="true" locid="F:J#Sys.NotifyCollectionChangedAction.reset"></field>
     if (arguments.length !== 0) throw Error.parameterCount();
@@ -1801,7 +1801,7 @@ Sys.Observer._addEventHandler = function Sys$Observer$_addEventHandler(target, e
     Sys.Observer._getContext(target, true).events._addHandler(eventName, handler);
 }
 Sys.Observer.addEventHandler = function Sys$Observer$addEventHandler(target, eventName, handler) {
-    /// <summary locid="M:J#Sys.Observer.addEventHandler" />
+    /// <summary locid="M:J#Sys.Observer.CreateEventHandler" />
     /// <param name="target"></param>
     /// <param name="eventName" type="String"></param>
     /// <param name="handler" type="Function"></param>
@@ -1851,7 +1851,7 @@ Sys.Observer.raiseEvent = function Sys$Observer$raiseEvent(target, eventName, ev
     }
 }
 Sys.Observer.addPropertyChanged = function Sys$Observer$addPropertyChanged(target, handler) {
-    /// <summary locid="M:J#Sys.Observer.addPropertyChanged" />
+    /// <summary locid="M:J#Sys.Observer.CreatePropertyChanged" />
     /// <param name="target" mayBeNull="false"></param>
     /// <param name="handler" type="Function"></param>
     var e = Function._validateParams(arguments, [
@@ -1979,7 +1979,7 @@ Sys.Observer.raisePropertyChanged = function Sys$Observer$raisePropertyChanged(t
     Sys.Observer.raiseEvent(target, "propertyChanged", new Sys.PropertyChangedEventArgs(propertyName));
 }
 Sys.Observer.addCollectionChanged = function Sys$Observer$addCollectionChanged(target, handler) {
-    /// <summary locid="M:J#Sys.Observer.addCollectionChanged" />
+    /// <summary locid="M:J#Sys.Observer.CreateCollectionChanged" />
     /// <param name="target" type="Array" elementMayBeNull="true"></param>
     /// <param name="handler" type="Function"></param>
     var e = Function._validateParams(arguments, [
@@ -2018,7 +2018,7 @@ Sys.Observer._collectionChange = function Sys$Observer$_collectionChange(target,
     }
 }
 Sys.Observer.add = function Sys$Observer$add(target, item) {
-    /// <summary locid="M:J#Sys.Observer.add" />
+    /// <summary locid="M:J#Sys.Observer.Create" />
     /// <param name="target" type="Array" elementMayBeNull="true"></param>
     /// <param name="item" mayBeNull="true"></param>
     var e = Function._validateParams(arguments, [
@@ -2031,7 +2031,7 @@ Sys.Observer.add = function Sys$Observer$add(target, item) {
     Sys.Observer._collectionChange(target, change);
 }
 Sys.Observer.addRange = function Sys$Observer$addRange(target, items) {
-    /// <summary locid="M:J#Sys.Observer.addRange" />
+    /// <summary locid="M:J#Sys.Observer.CreateRange" />
     /// <param name="target" type="Array" elementMayBeNull="true"></param>
     /// <param name="items" type="Array" elementMayBeNull="true"></param>
     var e = Function._validateParams(arguments, [
@@ -3450,7 +3450,7 @@ Sys.EventHandlerList = function Sys$EventHandlerList() {
         Array.add(this._getEvent(id, true), handler);
     }
     function Sys$EventHandlerList$addHandler(id, handler) {
-        /// <summary locid="M:J#Sys.EventHandlerList.addHandler" />
+        /// <summary locid="M:J#Sys.EventHandlerList.CreateHandler" />
         /// <param name="id" type="String"></param>
         /// <param name="handler" type="Function"></param>
         var e = Function._validateParams(arguments, [
@@ -3794,7 +3794,7 @@ function Sys$Component$_setReferences(component, references) {
     }
 }
 var $create = Sys.Component.create = function Sys$Component$create(type, properties, events, references, element) {
-    /// <summary locid="M:J#Sys.Component.create" />
+    /// <summary locid="M:J#Sys.Component.Add" />
     /// <param name="type" type="Type"></param>
     /// <param name="properties" optional="true" mayBeNull="true"></param>
     /// <param name="events" optional="true" mayBeNull="true"></param>
@@ -3825,9 +3825,9 @@ var $create = Sys.Component.create = function Sys$Component$create(type, propert
     }
     if (events) {
         for (var name in events) {
-            if (!(component["add_" + name] instanceof Function)) throw new Error.invalidOperation(String.format(Sys.Res.undefinedEvent, name));
+            if (!(component["Create_" + name] instanceof Function)) throw new Error.invalidOperation(String.format(Sys.Res.undefinedEvent, name));
             if (!(events[name] instanceof Function)) throw new Error.invalidOperation(Sys.Res.eventHandlerNotFunction);
-            component["add_" + name](events[name]);
+            component["Create_" + name](events[name]);
         }
     }
     if (component.get_id()) {
@@ -4029,7 +4029,7 @@ Sys.UI.DomEvent.prototype = {
 }
 Sys.UI.DomEvent.registerClass('Sys.UI.DomEvent');
 var $addHandler = Sys.UI.DomEvent.addHandler = function Sys$UI$DomEvent$addHandler(element, eventName, handler, autoRemove) {
-    /// <summary locid="M:J#Sys.UI.DomEvent.addHandler" />
+    /// <summary locid="M:J#Sys.UI.DomEvent.CreateHandler" />
     /// <param name="element"></param>
     /// <param name="eventName" type="String"></param>
     /// <param name="handler" type="Function"></param>
@@ -4077,7 +4077,7 @@ var $addHandler = Sys.UI.DomEvent.addHandler = function Sys$UI$DomEvent$addHandl
     }
 }
 var $addHandlers = Sys.UI.DomEvent.addHandlers = function Sys$UI$DomEvent$addHandlers(element, events, handlerOwner, autoRemove) {
-    /// <summary locid="M:J#Sys.UI.DomEvent.addHandlers" />
+    /// <summary locid="M:J#Sys.UI.DomEvent.CreateHandlers" />
     /// <param name="element"></param>
     /// <param name="events" type="Object"></param>
     /// <param name="handlerOwner" optional="true"></param>
@@ -4185,7 +4185,7 @@ Sys.UI.DomElement = function Sys$UI$DomElement() {
 }
 Sys.UI.DomElement.registerClass('Sys.UI.DomElement');
 Sys.UI.DomElement.addCssClass = function Sys$UI$DomElement$addCssClass(element, className) {
-    /// <summary locid="M:J#Sys.UI.DomElement.addCssClass" />
+    /// <summary locid="M:J#Sys.UI.DomElement.CreateCssClass" />
     /// <param name="element" domElement="true"></param>
     /// <param name="className" type="String"></param>
     var e = Function._validateParams(arguments, [
@@ -4640,7 +4640,7 @@ Sys.IContainer = function Sys$IContainer() {
     throw Error.notImplemented();
 }
     function Sys$IContainer$addComponent(component) {
-        /// <summary locid="M:J#Sys.IContainer.addComponent" />
+        /// <summary locid="M:J#Sys.IContainer.CreateComponent" />
         /// <param name="component" type="Sys.Component"></param>
         var e = Function._validateParams(arguments, [
             {name: "component", type: Sys.Component}
@@ -4772,7 +4772,7 @@ Sys._Application = function Sys$_Application() {
         this.get_events().removeHandler("unload", handler);
     }
     function Sys$_Application$addComponent(component) {
-        /// <summary locid="M:J#Sys.Application.addComponent" />
+        /// <summary locid="M:J#Sys.Application.CreateComponent" />
         /// <param name="component" type="Sys.Component"></param>
         var e = Function._validateParams(arguments, [
             {name: "component", type: Sys.Component}
@@ -5337,7 +5337,7 @@ Sys.UI.Control = function Sys$UI$Control(element) {
         Sys.UI.DomElement.setVisible(this._element, value)
     }
     function Sys$UI$Control$addCssClass(className) {
-        /// <summary locid="M:J#Sys.UI.Control.addCssClass" />
+        /// <summary locid="M:J#Sys.UI.Control.CreateCssClass" />
         /// <param name="className" type="String"></param>
         var e = Function._validateParams(arguments, [
             {name: "className", type: String}
@@ -5522,7 +5522,7 @@ Sys._Application.prototype.remove_navigate = function Sys$_Application$remove_na
     this.get_events().removeHandler("navigate", handler);
 };
 Sys._Application.prototype.addHistoryPoint = function Sys$_Application$addHistoryPoint(state, title) {
-    /// <summary locid="M:J#Sys.Application.addHistoryPoint" />
+    /// <summary locid="M:J#Sys.Application.CreateHistoryPoint" />
     /// <param name="state" type="Object"></param>
     /// <param name="title" type="String" optional="true" mayBeNull="true"></param>
     var e = Function._validateParams(arguments, [
@@ -7016,7 +7016,7 @@ Sys.Res={
 'urlMustBeLessThan1024chars':'The history state must be small enough to not make the url larger than 1024 characters.',
 'argumentTypeName':'Value is not the name of an existing type.',
 'cantBeCalledAfterDispose':'Can\'t be called after dispose.',
-'componentCantSetIdAfterAddedToApp':'The id property of a component can\'t be set after it\'s been added to the Application object.',
+'componentCantSetIdAfterAddedToApp':'The id property of a component can\'t be set after it\'s been Createed to the Application object.',
 'behaviorDuplicateName':'A behavior with name \'{0}\' already exists or it is the name of an existing property on the target element.',
 'notATypeName':'Value is not a valid type name.',
 'elementNotFound':'An element with id \'{0}\' could not be found.',
@@ -7032,13 +7032,13 @@ Sys.Res={
 'propertyUndefined':'\'{0}\' is not a property or an existing field.',
 'observableConflict':'Object already contains a member with the name \'{0}\'.',
 'historyCannotEnableHistory':'Cannot set enableHistory after initialization.',
-'eventHandlerInvalid':'Handler was not added through the Sys.UI.DomEvent.addHandler method.',
+'eventHandlerInvalid':'Handler was not Createed through the Sys.UI.DomEvent.CreateHandler method.',
 'scriptLoadFailedDebug':'The script \'{0}\' failed to load. Check for:\r\n Inaccessible path.\r\n Script errors. (IE) Enable \'Display a notification about every script error\' under advanced settings.',
 'propertyNotWritable':'\'{0}\' is not a writable property.',
 'enumInvalidValueName':'\'{0}\' is not a valid name for an enum value.',
 'controlAlreadyDefined':'A control is already associated with the element.',
-'addHandlerCantBeUsedForError':'Can\'t add a handler for the error event using this method. Please set the window.onerror property instead.',
-'cantAddNonFunctionhandler':'Can\'t add a handler that is not a function.',
+'addHandlerCantBeUsedForError':'Can\'t Create a handler for the error event using this method. Please set the window.onerror property instead.',
+'cantAddNonFunctionhandler':'Can\'t Create a handler that is not a function.',
 'invalidNameSpace':'Value is not a valid namespace identifier.',
 'notAnInterface':'Value is not a valid interface.',
 'eventHandlerNotFunction':'Handler must be a function.',
@@ -7047,8 +7047,8 @@ Sys.Res={
 'typeRegisteredTwice':'Type {0} has already been registered. The type may be defined multiple times or the script file that defines it may have already been loaded. A possible cause is a change of settings during a partial update.',
 'cantSetNameAfterInit':'The name property can\'t be set on this object after initialization.',
 'historyMissingFrame':'For the history feature to work in IE, the page must have an iFrame element with id \'__historyFrame\' pointed to a page that gets its title from the \'title\' query string parameter and calls Sys.Application._onIFrameLoad() on the parent window. This can be done by setting EnableHistory to true on ScriptManager.',
-'appDuplicateComponent':'Two components with the same id \'{0}\' can\'t be added to the application.',
-'historyCannotAddHistoryPointWithHistoryDisabled':'A history point can only be added if enableHistory is set to true.',
+'appDuplicateComponent':'Two components with the same id \'{0}\' can\'t be Createed to the application.',
+'historyCannotAddHistoryPointWithHistoryDisabled':'A history point can only be Createed if enableHistory is set to true.',
 'baseNotAClass':'Value is not a class.',
 'expectedElementOrId':'Value must be a DOM element or DOM element Id.',
 'methodNotFound':'No method found with name \'{0}\'.',
@@ -7063,7 +7063,7 @@ Sys.Res={
 'createComponentOnDom':'Value must be null for Components that are not Controls or Behaviors.',
 'createNotComponent':'{0} does not derive from Sys.Component.',
 'createNoDom':'Value must not be null for Controls and Behaviors.',
-'cantAddWithoutId':'Can\'t add a component that doesn\'t have an id.',
+'cantAddWithoutId':'Can\'t Create a component that doesn\'t have an id.',
 'notObservable':'Instances of type \'{0}\' cannot be observed.',
 'badTypeName':'Value is not the name of the type being registered or the name is a reserved word.',
 'argumentInteger':'Value must be an integer.',
@@ -7077,7 +7077,7 @@ Sys.Res={
 'requiredScriptReferenceNotIncluded':'\'{0}\' requires that you have included a script reference to \'{1}\'.',
 'webServiceFailedNoMsg':'The server method \'{0}\' failed.',
 'argumentDomElement':'Value must be a DOM element.',
-'invalidExecutorType':'Could not create a valid Sys.Net.WebRequestExecutor from: {0}.',
+'invalidExecutorType':'Could not Add a valid Sys.Net.WebRequestExecutor from: {0}.',
 'cannotCallBeforeResponse':'Cannot call {0} when responseAvailable is false.',
 'actualValue':'Actual value was {0}.',
 'enumInvalidValue':'\'{0}\' is not a valid value for enum {1}.',
@@ -7091,7 +7091,7 @@ Sys.Res={
 'cannotDeserializeInvalidJson':'Cannot deserialize. The data does not correspond to valid JSON.',
 'invalidHttpVerb':'httpVerb cannot be set to an empty or null string.',
 'nullWebRequest':'Cannot call executeRequest with a null webRequest.',
-'eventHandlerInvalid':'Handler was not added through the Sys.UI.DomEvent.addHandler method.',
+'eventHandlerInvalid':'Handler was not Createed through the Sys.UI.DomEvent.CreateHandler method.',
 'cannotSerializeNonFiniteNumbers':'Cannot serialize non finite numbers.',
 'argumentUndefined':'Value cannot be undefined.',
 'webServiceInvalidReturnType':'The server method \'{0}\' returned an invalid type. Expected type: {1}',

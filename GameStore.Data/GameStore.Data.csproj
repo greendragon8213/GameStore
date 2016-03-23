@@ -54,6 +54,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -63,13 +64,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Comments.cs" />
-    <Compile Include="Games.cs" />
-    <Compile Include="GameStoreDataContext.cs" />
-    <Compile Include="GameToGanre.cs" />
-    <Compile Include="GameToPlatformType.cs" />
-    <Compile Include="Genres.cs" />
-    <Compile Include="PlatformTypes.cs" />
+    <Compile Include="Abstract\ICommentRepository.cs" />
+    <Compile Include="Abstract\IBaseRepository.cs" />
+    <Compile Include="Abstract\IGameRepository.cs" />
+    <Compile Include="Abstract\IGenreRepository.cs" />
+    <Compile Include="Abstract\IPlatformTypeRepository.cs" />
+    <Compile Include="Concrete\BaseRepository.cs" />
+    <Compile Include="Concrete\CommentRepository.cs" />
+    <Compile Include="Concrete\GameStoreDbContext.cs" />
+    <Compile Include="Concrete\GameRepository.cs" />
+    <Compile Include="Entities\Comment.cs" />
+    <Compile Include="Entities\Game.cs" />
+    <Compile Include="Entities\Genre.cs" />
+    <Compile Include="Entities\PlatformType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +109,15 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GameStore.Model\GameStore.Model.csproj">
+      <Project>{742cbbe8-2e9d-42bb-8615-aa4c7361a61b}</Project>
+      <Name>GameStore.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

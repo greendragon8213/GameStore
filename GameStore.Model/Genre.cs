@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GameStore.Models
+namespace GameStore.Model
 {
     public class Genre
     {

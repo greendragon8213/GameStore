@@ -1,24 +1,31 @@
 ﻿using System.IO;
 using System.Web.Mvc;
 using System.Web.Routing;
-using GameStore.Models;
+using GameStore.Data.Concrete;
+using GameStore.Model;
 
 namespace GameStore.Controllers
 {
     public class GamesController : Controller
     {
+        private readonly GameRepository _gameRepository;
+
+        public GamesController()
+        {
+            _gameRepository = new GameRepository(new GameStoreDbContext());
+        }
+
         //
         // GET: /Games/
 
         public ActionResult Index()
         {
-            //var allGames = Game.GetAll();
             return View();
         }
 
         public JsonResult GetAllGames()
         {
-            var games = Game.GetAll();
+            var games = _gameRepository.GetAll();
             return Json(games, JsonRequestBehavior.AllowGet);
         }
 
@@ -30,25 +37,22 @@ namespace GameStore.Controllers
 
         public JsonResult GetById(int gameId)
         {
-            var game = Game.GetById(gameId);
+            var game = _gameRepository.GetById(gameId);//ToDo game type!!!!
             return Json(game, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public ActionResult Update(Game game)
         {
-            Game.Update(game);
+           // _gameRepository.Update(game);
             return RedirectToAction("Index");
-            //return Index();
-            //return RedirectToAction("Details", new {gameId = game.Id});
         }
         
         [HttpPost]
         public ActionResult Remove(int gameId)
         {
-            Game.Remove(gameId);
+            _gameRepository.Remove(gameId);
             return Json(Url.Action("Index","Games"));
-            //return RedirectToAction("Index");
         }
 
         public ActionResult Download(int gameId)

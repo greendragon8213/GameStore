@@ -120,10 +120,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Comment.cs" />
-    <Compile Include="Models\Game.cs" />
-    <Compile Include="Models\Genre.cs" />
-    <Compile Include="Models\PlatformType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -157,6 +154,10 @@
     <ProjectReference Include="..\GameStore.Data\GameStore.Data.csproj">
       <Project>{27bbdd91-b7a0-4ca4-8c53-ef62608761c3}</Project>
       <Name>GameStore.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameStore.Model\GameStore.Model.csproj">
+      <Project>{742cbbe8-2e9d-42bb-8615-aa4c7361a61b}</Project>
+      <Name>GameStore.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

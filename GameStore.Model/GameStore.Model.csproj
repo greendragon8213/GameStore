@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A8EF894E-278B-486E-A7BD-BFBF29F11491}</ProjectGuid>
+    <ProjectGuid>{742CBBE8-2E9D-42BB-8615-AA4C7361A61B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GameStore.Tests</RootNamespace>
-    <AssemblyName>GameStore.Tests</AssemblyName>
+    <RootNamespace>GameStore.Model</RootNamespace>
+    <AssemblyName>GameStore.Model</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,16 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Moq">
-      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -50,22 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameRepositoryTests.cs" />
+    <Compile Include="Comment.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="Genre.cs" />
+    <Compile Include="PlatformType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GameStore.Data\GameStore.Data.csproj">
-      <Project>{27bbdd91-b7a0-4ca4-8c53-ef62608761c3}</Project>
-      <Name>GameStore.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GameStore\GameStore.Web.csproj">
-      <Project>{eec0ebf8-6ff2-4de4-a2a3-18c803579c9e}</Project>
-      <Name>GameStore.Web</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

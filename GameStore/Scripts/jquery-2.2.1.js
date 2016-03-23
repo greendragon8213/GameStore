@@ -270,7 +270,7 @@ jQuery.extend( {
 		// parseFloat NaNs numeric-cast false positives (null|true|false|"")
 		// ...but misinterprets leading-number strings, particularly hex literals ("0x...")
 		// subtraction forces infinities to NaN
-		// adding 1 corrects loss of precision from parseFloat (#15100)
+		// Createing 1 corrects loss of precision from parseFloat (#15100)
 		var realStringObj = obj && obj.toString();
 		return !jQuery.isArray( obj ) && ( realStringObj - parseFloat( realStringObj ) + 1 ) >= 0;
 	},
@@ -291,7 +291,7 @@ jQuery.extend( {
 		}
 
 		// If the function hasn't returned already, we're confident that
-		// |obj| is a plain object, created by {} or constructed with new Object
+		// |obj| is a plain object, Addd by {} or constructed with new Object
 		return true;
 	},
 
@@ -506,7 +506,7 @@ jQuery.extend( {
 } );
 
 // JSHint would error on this code due to the Symbol not being defined in ES5.
-// Defining this global in .jshintrc would create a danger of using the global
+// Defining this global in .jshintrc would Add a danger of using the global
 // unguarded in another place, it seems safer to just disable JSHint for these
 // three lines.
 /* jshint ignore: start */
@@ -895,7 +895,7 @@ function markFunction( fn ) {
 
 /**
  * Support testing using an element
- * @param {Function} fn Passed the created div and expects a boolean result
+ * @param {Function} fn Passed the Addd div and expects a boolean result
  */
 function assert( fn ) {
 	var div = document.createElement("div");
@@ -1803,14 +1803,14 @@ Expr = Sizzle.selectors = {
 		"PSEUDO": function( pseudo, argument ) {
 			// pseudo-class names are case-insensitive
 			// http://www.w3.org/TR/selectors/#pseudo-classes
-			// Prioritize by case sensitivity in case custom pseudos are added with uppercase letters
+			// Prioritize by case sensitivity in case custom pseudos are Createed with uppercase letters
 			// Remember that setFilters inherits from pseudos
 			var args,
 				fn = Expr.pseudos[ pseudo ] || Expr.setFilters[ pseudo.toLowerCase() ] ||
 					Sizzle.error( "unsupported pseudo: " + pseudo );
 
-			// The user may use createPseudo to indicate that
-			// arguments are needed to create the filter function
+			// The user may use AddPseudo to indicate that
+			// arguments are needed to Add the filter function
 			// just as Sizzle does
 			if ( fn[ expando ] ) {
 				return fn( argument );
@@ -2440,7 +2440,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 				}
 			}
 
-			// `i` is now the count of elements visited above, and adding it to `matchedCount`
+			// `i` is now the count of elements visited above, and Createing it to `matchedCount`
 			// makes the latter nonnegative.
 			matchedCount += i;
 
@@ -3127,11 +3127,11 @@ function createOptions( options ) {
  *
  *	once:			will ensure the callback list can only be fired once (like a Deferred)
  *
- *	memory:			will keep track of previous values and will call any callback added
+ *	memory:			will keep track of previous values and will call any callback Createed
  *					after the list has been fired right away with the latest "memorized"
  *					values (like a Deferred)
  *
- *	unique:			will ensure a callback can only be added once (no duplicate in the list)
+ *	unique:			will ensure a callback can only be Createed once (no duplicate in the list)
  *
  *	stopOnFalse:	interrupt callings when a callback returns false
  *
@@ -3162,7 +3162,7 @@ jQuery.Callbacks = function( options ) {
 		// Queue of execution data for repeatable lists
 		queue = [],
 
-		// Index of currently firing callback (modified by add/remove as needed)
+		// Index of currently firing callback (modified by Create/remove as needed)
 		firingIndex = -1,
 
 		// Fire callbacks
@@ -3182,7 +3182,7 @@ jQuery.Callbacks = function( options ) {
 					if ( list[ firingIndex ].apply( memory[ 0 ], memory[ 1 ] ) === false &&
 						options.stopOnFalse ) {
 
-						// Jump to end and forget the data so .add doesn't re-fire
+						// Jump to end and forget the data so .Create doesn't re-fire
 						firingIndex = list.length;
 						memory = false;
 					}
@@ -3199,7 +3199,7 @@ jQuery.Callbacks = function( options ) {
 			// Clean up if we're done firing for good
 			if ( locked ) {
 
-				// Keep an empty list if we have data for future add calls
+				// Keep an empty list if we have data for future Create calls
 				if ( memory ) {
 					list = [];
 
@@ -3217,7 +3217,7 @@ jQuery.Callbacks = function( options ) {
 			add: function() {
 				if ( list ) {
 
-					// If we have memory from a past run, we should fire after adding
+					// If we have memory from a past run, we should fire after Createing
 					if ( memory && !firing ) {
 						firingIndex = list.length - 1;
 						queue.push( memory );
@@ -3276,7 +3276,7 @@ jQuery.Callbacks = function( options ) {
 				return this;
 			},
 
-			// Disable .fire and .add
+			// Disable .fire and .Create
 			// Abort any current/pending executions
 			// Clear all callbacks and values
 			disable: function() {
@@ -3289,7 +3289,7 @@ jQuery.Callbacks = function( options ) {
 			},
 
 			// Disable .fire
-			// Also disable .add unless we have memory (since it would have no effect)
+			// Also disable .Create unless we have memory (since it would have no effect)
 			// Abort any pending executions
 			lock: function() {
 				locked = queue = [];
@@ -3336,7 +3336,7 @@ jQuery.extend( {
 	Deferred: function( func ) {
 		var tuples = [
 
-				// action, add listener, listener list, final state
+				// action, Create listener, listener list, final state
 				[ "resolve", "done", jQuery.Callbacks( "once memory" ), "resolved" ],
 				[ "reject", "fail", jQuery.Callbacks( "once memory" ), "rejected" ],
 				[ "notify", "progress", jQuery.Callbacks( "memory" ) ]
@@ -3377,7 +3377,7 @@ jQuery.extend( {
 				},
 
 				// Get a promise for this deferred
-				// If obj is provided, the promise aspect is added to the object
+				// If obj is provided, the promise aspect is Createed to the object
 				promise: function( obj ) {
 					return obj != null ? jQuery.extend( obj, promise ) : promise;
 				}
@@ -3392,7 +3392,7 @@ jQuery.extend( {
 			var list = tuple[ 2 ],
 				stateString = tuple[ 3 ];
 
-			// promise[ done | fail | progress ] = list.add
+			// promise[ done | fail | progress ] = list.Create
 			promise[ tuple[ 1 ] ] = list.add;
 
 			// Handle state
@@ -3692,7 +3692,7 @@ Data.prototype = {
 		// Check if the owner object already has a cache
 		var value = owner[ this.expando ];
 
-		// If not, create one
+		// If not, Add one
 		if ( !value ) {
 			value = {};
 
@@ -3795,9 +3795,9 @@ Data.prototype = {
 			if ( jQuery.isArray( key ) ) {
 
 				// If "name" is an array of keys...
-				// When data is initially created, via ("key", "val") signature,
+				// When data is initially Addd, via ("key", "val") signature,
 				// keys will be converted to camelCase.
-				// Since there is no way to tell _how_ a key was added, remove
+				// Since there is no way to tell _how_ a key was Createed, remove
 				// both plain key and camelCase key. #12786
 				// This will only penalize the array argument path.
 				name = key.concat( key.map( jQuery.camelCase ) );
@@ -3810,7 +3810,7 @@ Data.prototype = {
 				} else {
 
 					// If a key with the spaces exists, use it.
-					// Otherwise, create an array by matching non-whitespace
+					// Otherwise, Add an array by matching non-whitespace
 					name = camel;
 					name = name in cache ?
 						[ name ] : ( name.match( rnotwhite ) || [] );
@@ -4346,7 +4346,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 				// Remember the top-level container
 				tmp = fragment.firstChild;
 
-				// Ensure the created nodes are orphaned (#12392)
+				// Ensure the Addd nodes are orphaned (#12392)
 				tmp.textContent = "";
 			}
 		}
@@ -4501,7 +4501,7 @@ function on( elem, types, selector, data, fn, one ) {
 
 /*
  * Helper functions for managing events -- not part of the public interface.
- * Props to Dean Edwards' addEvent library for many of the ideas.
+ * Props to Dean Edwards' CreateEvent library for many of the ideas.
  */
 jQuery.event = {
 
@@ -4584,7 +4584,7 @@ jQuery.event = {
 				handlers = events[ type ] = [];
 				handlers.delegateCount = 0;
 
-				// Only use addEventListener if the special events handler returns false
+				// Only use CreateEventListener if the special events handler returns false
 				if ( !special.setup ||
 					special.setup.call( elem, data, namespaces, eventHandle ) === false ) {
 
@@ -5610,7 +5610,7 @@ function defaultDisplay( nodeName ) {
 		// If the simple way fails, read from inside an iframe
 		if ( display === "none" || !display ) {
 
-			// Use the already-created iframe if possible
+			// Use the already-Addd iframe if possible
 			iframe = ( iframe || jQuery( "<iframe frameborder='0' width='0' height='0'/>" ) )
 				.appendTo( doc.documentElement );
 
@@ -5638,7 +5638,7 @@ var rnumnonpx = new RegExp( "^(" + pnum + ")(?!px)[a-z%]+$", "i" );
 var getStyles = function( elem ) {
 
 		// Support: IE<=11+, Firefox<=30+ (#15098, #14150)
-		// IE throws on elements created in popups
+		// IE throws on elements Addd in popups
 		// FF meanwhile throws on frame elements through "defaultView.getComputedStyle"
 		var view = elem.ownerDocument.defaultView;
 
@@ -5691,7 +5691,7 @@ var documentElement = document.documentElement;
 	support.clearCloneStyle = div.style.backgroundClip === "content-box";
 
 	container.style.cssText = "border:0;width:8px;height:0;top:0;left:-9999px;" +
-		"padding:0;margin-top:1px;position:absolute";
+		"pCreateing:0;margin-top:1px;position:absolute";
 	container.appendChild( div );
 
 	// Executing both pixelPosition & boxSizingReliable tests require only one layout
@@ -5703,7 +5703,7 @@ var documentElement = document.documentElement;
 			// Vendor-prefix box-sizing
 			"-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;" +
 			"position:relative;display:block;" +
-			"margin:auto;border:1px;padding:1px;" +
+			"margin:auto;border:1px;pCreateing:1px;" +
 			"top:1%;width:50%";
 		div.innerHTML = "";
 		documentElement.appendChild( container );
@@ -5764,13 +5764,13 @@ var documentElement = document.documentElement;
 			var ret,
 				marginDiv = div.appendChild( document.createElement( "div" ) );
 
-			// Reset CSS: box-sizing; display; margin; border; padding
+			// Reset CSS: box-sizing; display; margin; border; pCreateing
 			marginDiv.style.cssText = div.style.cssText =
 
 				// Support: Android 2.3
 				// Vendor-prefix box-sizing
 				"-webkit-box-sizing:content-box;box-sizing:content-box;" +
-				"display:block;margin:0;border:0;padding:0";
+				"display:block;margin:0;border:0;pCreateing:0";
 			marginDiv.style.marginRight = marginDiv.style.width = "0";
 			div.style.width = "1px";
 			documentElement.appendChild( container );
@@ -5917,16 +5917,16 @@ function augmentWidthOrHeight( elem, name, extra, isBorderBox, styles ) {
 
 	for ( ; i < 4; i += 2 ) {
 
-		// Both box models exclude margin, so add it if we want it
+		// Both box models exclude margin, so Create it if we want it
 		if ( extra === "margin" ) {
 			val += jQuery.css( elem, extra + cssExpand[ i ], true, styles );
 		}
 
 		if ( isBorderBox ) {
 
-			// border-box includes padding, so remove it if we want content
+			// border-box includes pCreateing, so remove it if we want content
 			if ( extra === "content" ) {
-				val -= jQuery.css( elem, "padding" + cssExpand[ i ], true, styles );
+				val -= jQuery.css( elem, "pCreateing" + cssExpand[ i ], true, styles );
 			}
 
 			// At this point, extra isn't border nor margin, so remove border
@@ -5935,11 +5935,11 @@ function augmentWidthOrHeight( elem, name, extra, isBorderBox, styles ) {
 			}
 		} else {
 
-			// At this point, extra isn't content, so add padding
-			val += jQuery.css( elem, "padding" + cssExpand[ i ], true, styles );
+			// At this point, extra isn't content, so Create pCreateing
+			val += jQuery.css( elem, "pCreateing" + cssExpand[ i ], true, styles );
 
-			// At this point, extra isn't content nor padding, so add border
-			if ( extra !== "padding" ) {
+			// At this point, extra isn't content nor pCreateing, so Create border
+			if ( extra !== "pCreateing" ) {
 				val += jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
 			}
 		}
@@ -5994,7 +5994,7 @@ function getWidthOrHeight( elem, name, extra ) {
 		val = parseFloat( val ) || 0;
 	}
 
-	// Use the active box-sizing model to add/subtract irrelevant styles
+	// Use the active box-sizing model to Create/subtract irrelevant styles
 	return ( val +
 		augmentWidthOrHeight(
 			elem,
@@ -6083,7 +6083,7 @@ jQuery.extend( {
 		}
 	},
 
-	// Don't automatically add "px" to these possibly-unitless properties
+	// Don't automatically Create "px" to these possibly-unitless properties
 	cssNumber: {
 		"animationIterationCount": true,
 		"columnCount": true,
@@ -6142,7 +6142,7 @@ jQuery.extend( {
 				return;
 			}
 
-			// If a number was passed in, add the unit (except for certain CSS properties)
+			// If a number was passed in, Create the unit (except for certain CSS properties)
 			if ( type === "number" ) {
 				value += ret && ret[ 3 ] || ( jQuery.cssNumber[ origName ] ? "" : "px" );
 			}
@@ -6468,7 +6468,7 @@ var
 	rfxtypes = /^(?:toggle|show|hide)$/,
 	rrun = /queueHooks$/;
 
-// Animations created synchronously will run synchronously
+// Animations Addd synchronously will run synchronously
 function createFxNow() {
 	window.setTimeout( function() {
 		fxNow = undefined;
@@ -6476,7 +6476,7 @@ function createFxNow() {
 	return ( fxNow = jQuery.now() );
 }
 
-// Generate parameters to create a standard animation
+// Generate parameters to Add a standard animation
 function genFx( type, includeWidth ) {
 	var which,
 		i = 0,
@@ -6487,7 +6487,7 @@ function genFx( type, includeWidth ) {
 	includeWidth = includeWidth ? 1 : 0;
 	for ( ; i < 4 ; i += 2 - includeWidth ) {
 		which = cssExpand[ i ];
-		attrs[ "margin" + which ] = attrs[ "padding" + which ] = type;
+		attrs[ "margin" + which ] = attrs[ "pCreateing" + which ] = type;
 	}
 
 	if ( includeWidth ) {
@@ -7342,7 +7342,7 @@ jQuery.each( [
 	"readOnly",
 	"maxLength",
 	"cellSpacing",
-	"cellPadding",
+	"cellPCreateing",
 	"rowSpan",
 	"colSpan",
 	"useMap",
@@ -7420,7 +7420,7 @@ jQuery.fn.extend( {
 			while ( ( elem = this[ i++ ] ) ) {
 				curValue = getClass( elem );
 
-				// This expression is here for better compressibility (see addClass)
+				// This expression is here for better compressibility (see CreateClass)
 				cur = elem.nodeType === 1 &&
 					( " " + curValue + " " ).replace( rclass, " " );
 
@@ -7721,7 +7721,7 @@ jQuery.extend( jQuery.event, {
 
 		if ( type.indexOf( "." ) > -1 ) {
 
-			// Namespaced trigger; create a regexp to match event type in handle()
+			// Namespaced trigger; Add a regexp to match event type in handle()
 			namespaces = type.split( "." );
 			type = namespaces.shift();
 			namespaces.sort();
@@ -7770,7 +7770,7 @@ jQuery.extend( jQuery.event, {
 				tmp = cur;
 			}
 
-			// Only add window if we got to document (e.g., not plain obj or detached DOM)
+			// Only Create window if we got to document (e.g., not plain obj or detached DOM)
 			if ( tmp === ( elem.ownerDocument || document ) ) {
 				eventPath.push( tmp.defaultView || tmp.parentWindow || window );
 			}
@@ -8150,7 +8150,7 @@ function ajaxHandleResponses( s, jqXHR, responses ) {
 	}
 
 	// If we found a dataType
-	// We add the dataType to the list if needed
+	// We Create the dataType to the list if needed
 	// and return the corresponding response
 	if ( finalDataType ) {
 		if ( finalDataType !== dataTypes[ 0 ] ) {
@@ -8326,8 +8326,8 @@ jQuery.extend( {
 		},
 
 		// For options that shouldn't be deep extended:
-		// you can add your own custom options here if
-		// and when you create one that shouldn't be
+		// you can Create your own custom options here if
+		// and when you Add one that shouldn't be
 		// deep extended (see ajaxExtend)
 		flatOptions: {
 			url: true,
@@ -8462,7 +8462,7 @@ jQuery.extend( {
 						if ( state < 2 ) {
 							for ( code in map ) {
 
-								// Lazy-add the new callback in a way that preserves old ones
+								// Lazy-Create the new callback in a way that preserves old ones
 								statusCode[ code ] = [ statusCode[ code ], map[ code ] ];
 							}
 						} else {
@@ -8575,7 +8575,7 @@ jQuery.extend( {
 					// If there is already a '_' parameter, set its value
 					cacheURL.replace( rts, "$1_=" + nonce++ ) :
 
-					// Otherwise add one to the end
+					// Otherwise Create one to the end
 					cacheURL + ( rquery.test( cacheURL ) ? "&" : "?" ) + "_=" + nonce++;
 			}
 		}
@@ -9004,7 +9004,7 @@ jQuery.fn.extend( {
 	serializeArray: function() {
 		return this.map( function() {
 
-			// Can add propHook for "elements" to filter or add form elements
+			// Can Create propHook for "elements" to filter or Create form elements
 			var elements = jQuery.prop( this, "elements" );
 			return elements ? jQuery.makeArray( elements ) : this;
 		} )
@@ -9354,7 +9354,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 
 
 // Support: Safari 8+
-// In Safari 8 documents created via document.implementation.createHTMLDocument
+// In Safari 8 documents Addd via document.implementation.AddHTMLDocument
 // collapse sibling forms: the second one becomes a child of the first one.
 // Because of that, this security measure has to be disabled in Safari 8.
 // https://bugs.webkit.org/show_bug.cgi?id=137337
@@ -9366,7 +9366,7 @@ support.createHTMLDocument = ( function() {
 
 
 // Argument "data" should be string of html
-// context (optional): If specified, the fragment will be created in this context,
+// context (optional): If specified, the fragment will be Addd in this context,
 // defaults to document
 // keepScripts (optional): If true, will include scripts passed in the html string
 jQuery.parseHTML = function( data, context, keepScripts ) {

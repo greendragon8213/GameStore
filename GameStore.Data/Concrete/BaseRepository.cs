@@ -6,41 +6,44 @@ namespace GameStore.Data.Concrete
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        public DbSet<T> DataTable;
-        private readonly GameStoreDbContext _context;
+        protected readonly GameStoreDbContext _context;
 
         public BaseRepository(GameStoreDbContext dataContext)
         {
             _context = dataContext;
-            DataTable = dataContext.Set<T>();
+        }
+
+        public BaseRepository()
+        {
+            _context = new GameStoreDbContext();
         }
 
         public IEnumerable<T> GetAll()
         {
-            return DataTable;
+            return _context.Set<T>();
         }
 
         public T GetById(int id)
         {
-            return DataTable.Find(id);
+            return _context.Set<T>().Find(id); 
         }
 
         public virtual void Create(T entity)
         {
-            DataTable.Add(entity);
+            _context.Set<T>().Add(entity);
             SaveChanges();
         }
 
         public virtual void Remove(int id)
         {
-            var entity = DataTable.Find(id);
+            var entity = _context.Set<T>().Find(id);
 
             if (entity == null)
             {
                 return;
             }
 
-            DataTable.Remove(entity);
+            _context.Set<T>().Remove(entity);
             SaveChanges();
         }
 

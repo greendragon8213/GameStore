@@ -10,7 +10,7 @@ namespace GameStore.Data.Concrete
             : base(dataContext)
         {
         }
-
+        
         public void Create(Model.Game game)
         {
             if (game == null)
@@ -28,9 +28,9 @@ namespace GameStore.Data.Concrete
             Create(entity);
         }
 
-        public void Update(Game game)
+        public void Update(Model.Game game)
         {
-            var gameToUpdate = DataTable.Find(game.Id);
+            var gameToUpdate = _context.Games.Find(game.Id);
 
             if (gameToUpdate == null)
             {
@@ -43,7 +43,8 @@ namespace GameStore.Data.Concrete
             gameToUpdate.Name = game.Name;
             gameToUpdate.Description = game.Description;
 
-            DataTable.AddOrUpdate(gameToUpdate);
+            //_context.Entry(gameToUpdate).State = EntityState.Modified;
+            _context.Games.AddOrUpdate(gameToUpdate);
             SaveChanges();
         }
 

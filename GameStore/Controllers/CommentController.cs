@@ -1,15 +1,21 @@
 ﻿using System.Web.Mvc;
+using GameStore.Data.Abstract;
 using GameStore.Data.Concrete;
 
 namespace GameStore.Controllers
 {
     public class CommentController : Controller
     {
-        private readonly CommentRepository _commentRepository;
+        private readonly ICommentRepository _commentRepository;
 
         public CommentController()
         {
             _commentRepository = new CommentRepository(new GameStoreDbContext());
+        }
+
+        public CommentController(ICommentRepository commentRepository)
+        {
+            _commentRepository = commentRepository;
         }
 
         //
@@ -31,7 +37,6 @@ namespace GameStore.Controllers
         {
             _commentRepository.Add(content, gameId, parentCommentId);
             return RedirectToAction("Index", "Games");
-            //return RedirectToAction("Comments", new {gameId = gameId});
         }
 
     }

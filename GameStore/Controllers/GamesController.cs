@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Web.Mvc;
 using System.Web.Routing;
+using GameStore.Data.Abstract;
 using GameStore.Data.Concrete;
 using GameStore.Model;
 
@@ -8,7 +9,13 @@ namespace GameStore.Controllers
 {
     public class GamesController : Controller
     {
-        private readonly GameRepository _gameRepository;
+        private readonly IGameRepository _gameRepository;
+
+        //we have got the loosely coupled objects!
+        public GamesController(IGameRepository gameRepository)
+        {
+            _gameRepository = gameRepository;
+        }
 
         public GamesController()
         {
@@ -17,7 +24,6 @@ namespace GameStore.Controllers
 
         //
         // GET: /Games/
-
         public ActionResult Index()
         {
             return View();
@@ -25,7 +31,7 @@ namespace GameStore.Controllers
 
         public JsonResult GetAllGames()
         {
-            var games = _gameRepository.GetAll();
+            var games = _gameRepository.GetAll();//it returns List<Entity.Game>!!
             return Json(games, JsonRequestBehavior.AllowGet);
         }
 
@@ -37,14 +43,14 @@ namespace GameStore.Controllers
 
         public JsonResult GetById(int gameId)
         {
-            var game = _gameRepository.GetById(gameId);//ToDo game type!!!!
+            var game = _gameRepository.GetById(gameId);//it returns Entity.Game!!
             return Json(game, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public ActionResult Update(Game game)
         {
-           // _gameRepository.Update(game);
+           _gameRepository.Update(game);
             return RedirectToAction("Index");
         }
         
@@ -61,6 +67,12 @@ namespace GameStore.Controllers
             var stream = new StreamReader("theFilePath.bin");
             return File(stream.ReadToEnd(), "bin");
         }
+
+        ////protected override void Dispose(bool disposing)
+        ////{
+        ////    repo.Dispose();
+        ////    base.Dispose(disposing);
+        ////}
 
     }
 }

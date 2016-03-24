@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using GameStore.Data.Abstract;
 using GameStore.Data.Entities;
+using Game = GameStore.Model.Game;
 
 namespace GameStore.Data.Concrete
 {
@@ -23,7 +25,8 @@ namespace GameStore.Data.Concrete
                 Name = "TestName", // ToDo
                 Body = content,
                 GameId = gameId,
-                ParentCommentId = parentCommetId
+                ParentCommentId = parentCommetId,
+                CreationDate = DateTime.Now
             };
 
             Create(entity);
@@ -31,7 +34,7 @@ namespace GameStore.Data.Concrete
 
         public IEnumerable<Comment> GetCommentsByGameId(int gameId)
         {
-            return DataTable.Where(c => c.GameId == gameId).ToList();
+            return _context.Comments.Where(c => c.GameId == gameId).ToList();
         }
     }
 }

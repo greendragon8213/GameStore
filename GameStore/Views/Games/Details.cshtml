@@ -3,10 +3,12 @@
 <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        if (@ViewBag.GameId == null)
+    $(document).ready(function() {
+        if (@ViewBag.GameId == null) {
+            alert("GameId is null!!!");
             return;
-        var actionUrl = '@Url.Action("GetById", "Games", new { gameId = @ViewBag.GameId })';
+        }
+        var actionUrl = '@Url.Action("GetById", "Games", new {gameId = @ViewBag.GameId})';
         $.getJSON(actionUrl, displayData);
     });
     

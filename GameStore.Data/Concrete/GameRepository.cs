@@ -30,6 +30,7 @@ namespace GameStore.Data.Concrete
 
         public void Update(Model.Game game)
         {
+            var ccc = _context.Games;
             var gameToUpdate = _context.Games.Find(game.Id);
 
             if (gameToUpdate == null)

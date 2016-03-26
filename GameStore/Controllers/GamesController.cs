@@ -1,6 +1,6 @@
 ﻿using System.IO;
+using System.Linq;
 using System.Web.Mvc;
-using System.Web.Routing;
 using GameStore.Data.Abstract;
 using GameStore.Data.Concrete;
 using GameStore.Model;
@@ -11,7 +11,7 @@ namespace GameStore.Controllers
     {
         private readonly IGameRepository _gameRepository;
 
-        //we have got the loosely coupled objects!
+        // we have got the loosely coupled objects!
         public GamesController(IGameRepository gameRepository)
         {
             _gameRepository = gameRepository;
@@ -55,9 +55,10 @@ namespace GameStore.Controllers
         }
         
         [HttpPost]
-        public ActionResult Remove(int gameId)
+        public JsonResult Remove(int gameId)
         {
             _gameRepository.Remove(gameId);
+            //return Json(gameId); - test works for Json like that (without Helpers)
             return Json(Url.Action("Index","Games"));
         }
 

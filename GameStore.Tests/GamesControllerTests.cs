@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
+using System.Web.Routing;
 using GameStore.Controllers;
 using GameStore.Data.Abstract;
-using GameStore.Data.Concrete;
 using GameStore.Data.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -18,71 +14,180 @@ namespace GameStore.Tests
     [TestClass]
     public class GamesControllerTests
     {
+        #region Index testing
         [TestMethod]
-        public void GamesController_Index_ShouldReturnView()
+        public void Index_ShouldAlwaysReturnView()
         {
             // Arrange
-            GamesController controller = new GamesController();
+            var controller = new GamesController();
 
             // Act
-            ViewResult result = controller.Index() as ViewResult;
+            var result = controller.Index() as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);
         }
+        #endregion
 
+        #region GetAllGames testing
         [TestMethod]
-        public void GamesController_Details_ShouldReturnCorrectViewBag_WhenGameIdNotNull()
+        public void GetAllGames_GetAllIsCalledAndAndJsonResultIsCorrect()
         {
-            GamesController controller = new GamesController();
+            // Arrange
+            var expectedGames = new List<Game>
+            {
+                new Game {Id = 1, Name = "BBB", Key = "k1"},
+                new Game {Id = 2, Name = "ZZZ", Key = "k2"},
+                new Game {Id = 3, Name = "AAA", Key = "k3"},
+            };
 
-            ViewResult result = controller.Details(5) as ViewResult;
+            var mock = new Mock<IGameRepository>();
+            mock.Setup(m => m.GetAll()).Returns(expectedGames);
+            var controller = new GamesController(mock.Object);
 
+            // Act
+            var result = controller.GetAllGames() as JsonResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+            mock.Verify(a => a.GetAll(), Times.Once);
+            Assert.AreEqual(expectedGames, result.Data);
+        }
+        #endregion
+
+        #region Details testing
+        [TestMethod]
+        public void Details_ShouldReturnCorrectViewBag_WhenGameIdNotNull()
+        {
+            // Arrange
+            var controller = new GamesController();
+
+            // Act
+            var result = controller.Details(5) as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
             Assert.AreEqual(5, result.ViewBag.GameId);
         }
 
         [TestMethod]
-        public void GamesController_Details_ShouldReturnCorrectViewBag_WhenGameIdIsNull()
+        public void Details_ShouldReturnNullViewBag_WhenGameIdIsNull()
         {
-            GamesController controller = new GamesController();
+            // Arrange
+            var controller = new GamesController();
 
-            ViewResult result = controller.Details(null) as ViewResult;
+            // Act
+            var result = controller.Details(null) as ViewResult;
 
-            Assert.AreEqual(null, result.ViewBag.GameId);
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsNull(result.ViewBag.GameId);
         }
+        #endregion
 
+        #region Update testing
         [TestMethod]
-        public void GamesController_Update_UpdateForRepositoryIsCalledAndRedirectWorks()
+        public void Update_InputIsValid_UpdateForRepositoryIsCalledAndRedirectWorks()
         {
-            // arrange
+            // Arrange
             var mock = new Mock<IGameRepository>();
-            GamesController controller = new GamesController(mock.Object);
+            var controller = new GamesController(mock.Object);
             var game = new Model.Game();
 
-            // act
-            RedirectToRouteResult result = controller.Update(game) as RedirectToRouteResult;
+            // Act
+            var result = controller.Update(game) as RedirectToRouteResult;
 
-            // assert
+            // Assert
+            Assert.IsNotNull(result);
             mock.Verify(a => a.Update(game), Times.Once);
             Assert.AreEqual("Index", result.RouteValues["action"]);
         }
 
         [TestMethod]
-        public void GameController_GetById_GetByIdForRepositoryIsCalledAndJsonResultIsCorrect()
+        public void Update_InputIsNotValid_UpdateForRepositoryIsCalledAndRedirectWorks()
         {
+            // Arrange
+            var mock = new Mock<IGameRepository>();
+            var controller = new GamesController(mock.Object);
+            Model.Game game = null;
+
+            // Act
+            var result = controller.Update(game) as RedirectToRouteResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+            mock.Verify(a => a.Update(game), Times.Once);
+            Assert.AreEqual("Index", result.RouteValues["action"]);
+        }
+        #endregion
+
+        [TestMethod]
+        public void Remove_RemoveForRepositoryIsCalledAndRedirectWorks()
+        {
+            //ToDo it doesn't works! bacause of Helpers in controller
+            // Arrange
+            var mock = new Mock<IGameRepository>();
+
+            ////var request = new Mock<HttpRequestBase>();
+            ////var context = new Mock<HttpContextBase>();
+            ////context.SetupGet(x => x.Request).Returns(request.Object); //Set up request base for the httpcontext
+
+            //context
+            int gameId = 1;
+            var expectedResult = new JsonResult();//Url.Action("Index", "Games"
+            var controller = new GamesController(mock.Object);
+
+            ////controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller); 
+
+            // Act
+            var result = controller.Remove(gameId) as JsonResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+            mock.Verify(a => a.Remove(gameId), Times.Once);
+            //Assert.AreEqual(expectedResult, result.Data);
+        }
+
+        #region GetById testing
+        [TestMethod]
+        public void GetById_InputIsValid_GetByIdForRepositoryIsCalledAndJsonResultIsCorrect()
+        {
+            // Arrange
             var mock = new Mock<IGameRepository>();
             //context
             int gameId = 1;
-            Game expectedGame = new Game(){Id = 1, Name = "name1", Key = "kkk1"};
+            var expectedGame = new Game(){Id = 1, Name = "name1", Key = "kkk1"};
             mock.Setup(m => m.GetById(gameId)).Returns(expectedGame);
-            GamesController controller = new GamesController(mock.Object);
+            var controller = new GamesController(mock.Object);
 
-            //act
-            JsonResult actual = controller.GetById(gameId) as JsonResult;
+            // Act
+            var result = controller.GetById(gameId) as JsonResult;
 
-            //assert
+            // Assert
+            Assert.IsNotNull(result);
             mock.Verify(a => a.GetById(gameId), Times.Once);
-            Assert.AreEqual(expectedGame, actual.Data);
+            Assert.AreEqual(expectedGame, result.Data);
         }
+
+        [TestMethod]
+        public void GetById_InputIsNotValid_GetByIdForRepositoryIsCalledAndJsonResultIsCorrect()
+        {
+            // Arrange
+            var mock = new Mock<IGameRepository>();
+            //context
+            int gameId = -7;
+            Game expectedGame = null;//new Game() { Id = 1, Name = "name1", Key = "kkk1" };
+            mock.Setup(m => m.GetById(gameId)).Returns(expectedGame);
+            var controller = new GamesController(mock.Object);
+
+            // Act
+            var result = controller.GetById(gameId) as JsonResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+            mock.Verify(a => a.GetById(gameId), Times.Once);
+            Assert.AreEqual(expectedGame, result.Data);
+        }
+        #endregion
     }
 }

@@ -11,8 +11,9 @@ namespace GameStore.Tests
     [TestClass]
     public class GameRepositoryTests
     {
+        #region GetAll testing
         [TestMethod]
-        public void GameRepository_GetAll_ShouldReturnCorrectCollection_WhenContextNotEmpty()
+        public void GetAll_ShouldReturnCorrectCollection_WhenContextNotEmpty()
         {
             // Arrange
             var data = new List<Game>
@@ -40,6 +41,7 @@ namespace GameStore.Tests
             var result = service.GetAll().ToList();
             
             //Assert
+            //Assert.AreEqual(data, result.ToList());
             Assert.AreEqual(3, result.Count);
             Assert.AreEqual("BBB", result[0].Name);
             Assert.AreEqual("ZZZ", result[1].Name);
@@ -52,7 +54,7 @@ namespace GameStore.Tests
             Assert.AreEqual("k3", result[2].Key);
         }
         [TestMethod]
-        public void GameRepository_GetAll_ShouldReturnNull_WhenContextIsEmpty()
+        public void GetAll_ShouldReturn0Games_WhenContextIsEmpty()
         {
             //ToDo
             // Arrange
@@ -75,7 +77,56 @@ namespace GameStore.Tests
             var result = service.GetAll().ToList();
 
             //Assert
+            //Assert.IsNull(result);
             Assert.AreEqual(0, result.Count);
         }
+        #endregion
+
+        #region Remove testing
+        [TestMethod]
+        public void Remove_ShouldReturnCorrectCollection_WhenContextNotEmpty()
+        {
+            // Arrange
+            var data = new List<Game>
+            {
+                new Game {Id = 1, Name = "BBB", Key = "k1"},
+                new Game {Id = 2, Name = "ZZZ", Key = "k2" },
+                new Game {Id = 3, Name = "AAA", Key = "k3" },
+            }.AsQueryable();
+
+            var mockSet = new Mock<DbSet<Game>>();
+            mockSet.As<IQueryable<Game>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Game>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<Game>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<Game>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator);
+
+            var mockContext = new Mock<GameStoreDbContext>();
+            mockContext.Setup(c => c.Set<Game>()).Returns(mockSet.Object);
+            mockContext.Object.Games = mockSet.Object;
+            mockContext.Object.Games.Add(new Game { Id = 1, Name = "BBB", Key = "k1" });
+            mockContext.Object.Games.Add(new Game { Id = 2, Name = "ZZZ", Key = "k2" });
+            mockContext.Object.Games.Add(new Game { Id = 3, Name = "AAA", Key = "k3" });
+            int gameIdToRemove = 2;
+
+            //Act
+            var service = new GameRepository(mockContext.Object);
+            service.Remove(gameIdToRemove);
+            var result = service.GetAll();
+
+            //Assert
+            //Assert.AreEqual(data, result.ToList());
+            Assert.AreEqual(2, result.Count());
+            ////Assert.AreEqual("BBB", result[0].Name);
+            ////Assert.AreEqual("ZZZ", result[1].Name);
+            ////Assert.AreEqual("AAA", result[2].Name);
+            ////Assert.AreEqual(1, result[0].Id);
+            ////Assert.AreEqual(2, result[1].Id);
+            ////Assert.AreEqual(3, result[2].Id);
+            ////Assert.AreEqual("k1", result[0].Key);
+            ////Assert.AreEqual("k2", result[1].Key);
+            ////Assert.AreEqual("k3", result[2].Key);
+        }
+        #endregion
+
     }
 }

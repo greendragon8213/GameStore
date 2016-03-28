@@ -16,25 +16,25 @@ namespace GameStore.Tests
         public void GetAll_ShouldReturnCorrectCollection_WhenContextNotEmpty()
         {
             // Arrange
-            var data = new List<Game>
+            var data = new List<GameDataModel>
             {
-                new Game {Id = 1, Name = "BBB", Key = "k1"},
-                new Game {Id = 2, Name = "ZZZ", Key = "k2" },
-                new Game {Id = 3, Name = "AAA", Key = "k3" },
+                new GameDataModel {Id = 1, Name = "BBB", Key = "k1"},
+                new GameDataModel {Id = 2, Name = "ZZZ", Key = "k2" },
+                new GameDataModel {Id = 3, Name = "AAA", Key = "k3" },
             }.AsQueryable();
 
-            var mockSet = new Mock<DbSet<Game>>();
-            mockSet.As<IQueryable<Game>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<Game>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<Game>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Game>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator);
+            var mockSet = new Mock<DbSet<GameDataModel>>();
+            mockSet.As<IQueryable<GameDataModel>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<GameDataModel>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<GameDataModel>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<GameDataModel>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator);
 
             var mockContext = new Mock<GameStoreDbContext>();
-            mockContext.Setup(c => c.Set<Game>()).Returns(mockSet.Object);
+            mockContext.Setup(c => c.Set<GameDataModel>()).Returns(mockSet.Object);
             mockContext.Object.Games = mockSet.Object;
-            mockContext.Object.Games.Add(new Game { Id = 1, Name = "BBB", Key = "k1" });
-            mockContext.Object.Games.Add(new Game { Id = 2, Name = "ZZZ", Key = "k2" });
-            mockContext.Object.Games.Add(new Game { Id = 3, Name = "AAA", Key = "k3" });
+            mockContext.Object.Games.Add(new GameDataModel { Id = 1, Name = "BBB", Key = "k1" });
+            mockContext.Object.Games.Add(new GameDataModel { Id = 2, Name = "ZZZ", Key = "k2" });
+            mockContext.Object.Games.Add(new GameDataModel { Id = 3, Name = "AAA", Key = "k3" });
             
             //Act
             var service = new GameRepository(mockContext.Object);
@@ -58,18 +58,18 @@ namespace GameStore.Tests
         {
             //ToDo
             // Arrange
-            var data = new List<Game>
+            var data = new List<GameDataModel>
             {
             }.AsQueryable();
 
-            var mockSet = new Mock<DbSet<Game>>();
-            mockSet.As<IQueryable<Game>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<Game>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<Game>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Game>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator);
+            var mockSet = new Mock<DbSet<GameDataModel>>();
+            mockSet.As<IQueryable<GameDataModel>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<GameDataModel>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<GameDataModel>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<GameDataModel>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator);
 
             var mockContext = new Mock<GameStoreDbContext>();
-            mockContext.Setup(c => c.Set<Game>()).Returns(mockSet.Object);
+            mockContext.Setup(c => c.Set<GameDataModel>()).Returns(mockSet.Object);
             mockContext.Object.Games = mockSet.Object;
              
             //Act
@@ -87,25 +87,25 @@ namespace GameStore.Tests
         public void Remove_ShouldReturnCorrectCollection_WhenContextNotEmpty()
         {
             // Arrange
-            var data = new List<Game>
+            var data = new List<GameDataModel>
             {
-                new Game {Id = 1, Name = "BBB", Key = "k1"},
-                new Game {Id = 2, Name = "ZZZ", Key = "k2" },
-                new Game {Id = 3, Name = "AAA", Key = "k3" },
+                new GameDataModel {Id = 1, Name = "BBB", Key = "k1"},
+                new GameDataModel {Id = 2, Name = "ZZZ", Key = "k2" },
+                new GameDataModel {Id = 3, Name = "AAA", Key = "k3" },
             }.AsQueryable();
 
-            var mockSet = new Mock<DbSet<Game>>();
-            mockSet.As<IQueryable<Game>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<Game>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<Game>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Game>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator);
+            var mockSet = new Mock<DbSet<GameDataModel>>();
+            mockSet.As<IQueryable<GameDataModel>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<GameDataModel>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<GameDataModel>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<GameDataModel>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator);
 
             var mockContext = new Mock<GameStoreDbContext>();
-            mockContext.Setup(c => c.Set<Game>()).Returns(mockSet.Object);
+            mockContext.Setup(c => c.Set<GameDataModel>()).Returns(mockSet.Object);
             mockContext.Object.Games = mockSet.Object;
-            mockContext.Object.Games.Add(new Game { Id = 1, Name = "BBB", Key = "k1" });
-            mockContext.Object.Games.Add(new Game { Id = 2, Name = "ZZZ", Key = "k2" });
-            mockContext.Object.Games.Add(new Game { Id = 3, Name = "AAA", Key = "k3" });
+            mockContext.Object.Games.Add(new GameDataModel { Id = 1, Name = "BBB", Key = "k1" });
+            mockContext.Object.Games.Add(new GameDataModel { Id = 2, Name = "ZZZ", Key = "k2" });
+            mockContext.Object.Games.Add(new GameDataModel { Id = 3, Name = "AAA", Key = "k3" });
             int gameIdToRemove = 2;
 
             //Act

@@ -34,11 +34,11 @@ namespace GameStore.Tests
         public void GetAllGames_GetAllIsCalledAndAndJsonResultIsCorrect()
         {
             // Arrange
-            var expectedGames = new List<Game>
+            var expectedGames = new List<GameDataModel>
             {
-                new Game {Id = 1, Name = "BBB", Key = "k1"},
-                new Game {Id = 2, Name = "ZZZ", Key = "k2"},
-                new Game {Id = 3, Name = "AAA", Key = "k3"},
+                new GameDataModel {Id = 1, Name = "BBB", Key = "k1"},
+                new GameDataModel {Id = 2, Name = "ZZZ", Key = "k2"},
+                new GameDataModel {Id = 3, Name = "AAA", Key = "k3"},
             };
 
             var mock = new Mock<IGameRepository>();
@@ -156,7 +156,7 @@ namespace GameStore.Tests
             var mock = new Mock<IGameRepository>();
             //context
             int gameId = 1;
-            var expectedGame = new Game(){Id = 1, Name = "name1", Key = "kkk1"};
+            var expectedGame = new GameDataModel(){Id = 1, Name = "name1", Key = "kkk1"};
             mock.Setup(m => m.GetById(gameId)).Returns(expectedGame);
             var controller = new GamesController(mock.Object);
 
@@ -176,7 +176,7 @@ namespace GameStore.Tests
             var mock = new Mock<IGameRepository>();
             //context
             int gameId = -7;
-            Game expectedGame = null;//new Game() { Id = 1, Name = "name1", Key = "kkk1" };
+            GameDataModel expectedGame = null;//new GameWebModel() { Id = 1, Name = "name1", Key = "kkk1" };
             mock.Setup(m => m.GetById(gameId)).Returns(expectedGame);
             var controller = new GamesController(mock.Object);
 

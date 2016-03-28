@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GameStore.Data.Abstract;
 using GameStore.Data.Concrete;
 using GameStore.Data.Entities;
@@ -15,68 +11,68 @@ namespace GameStore.Data.UnitOfWork
     {
         static UnitOfWork()
         {
-            //ToDo it by EF!!!
-            //Database.SetInitializer(new StoreInitializer());
+            Database.SetInitializer(new DbInitializer());
         }
 
-        private DbContext context;
-        private IBaseRepository<Game> _gameRepository;
-        private IBaseRepository<Genre> _genreRepository;
-        private IBaseRepository<PlatformType> _platformRepository;
-        private IBaseRepository<Comment> _commentRepository;
+        private readonly DbContext _context;
+        private IBaseRepository<GameDataModel> _gameRepository;
+        private IBaseRepository<GenreDataModel> _genreRepository;
+        private IBaseRepository<PlatformTypeDataModel> _platformRepository;
+        private IBaseRepository<CommentDataModel> _commentRepository;
 
-        public UnitOfWork(GameStoreDbContext context)
+        public UnitOfWork(DbContext context)
         {
-            this.context = context;
+            _context = context;
+            
         }
 
-        public IBaseRepository<Game> GameRepository
+        public IBaseRepository<GameDataModel> GameRepository
         {
             get
             {
 
                 if (_gameRepository == null)
                 {
-                    _gameRepository = new BaseRepository<Game>(context);
+                    _gameRepository = new BaseRepository<GameDataModel>(_context);
                 }
                 return _gameRepository;
             }
         }
 
-        public IBaseRepository<Genre> GenreRepository
+        public IBaseRepository<GenreDataModel> GenreRepository
         {
             get
             {
 
-                if (this._genreRepository == null)
+                if (_genreRepository == null)
                 {
-                    this._genreRepository = new BaseRepository<Genre>(context);
+                    _genreRepository = new BaseRepository<GenreDataModel>(_context);
                 }
                 return _genreRepository;
             }
         }
 
-        public IBaseRepository<PlatformType> PlatformRepository
+        public IBaseRepository<PlatformTypeDataModel> PlatformRepository
         {
             get
             {
 
-                if (this._platformRepository == null)
+                if (_platformRepository == null)
                 {
-                    this._platformRepository = new BaseRepository<PlatformType>(context);
+                    _platformRepository = new BaseRepository<PlatformTypeDataModel>(_context);
                 }
                 return _platformRepository;
             }
         }
 
-        public IBaseRepository<Comment> CommentRepository
+        public IBaseRepository<CommentDataModel> CommentRepository
         {
             get
             {
 
-                if (this._commentRepository == null)
+                if (_commentRepository == null)
                 {
-                    this._commentRepository = new BaseRepository<Comment>(context);
+                    _commentRepository = new BaseRepository<CommentDataModel>(_context);
                 }
                 return _commentRepository;
             }
@@ -84,21 +80,21 @@ namespace GameStore.Data.UnitOfWork
 
         public void Save()
         {
-            context.SaveChanges();
+            _context.SaveChanges();
         }
 
         private bool _disposed = false;
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!this._disposed)
+            if (!_disposed)
             {
                 if (disposing)
                 {
-                    context.Dispose();
+                    _context.Dispose();
                 }
             }
-            this._disposed = true;
+            _disposed = true;
         }
 
         public void Dispose()

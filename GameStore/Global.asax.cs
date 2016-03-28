@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using GameStore.App_Start;
+using GameStore.Data;
 
 namespace GameStore
 {
@@ -19,6 +21,8 @@ namespace GameStore
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            AutoMapperConfig.CreateAllMaps();
         }
     }
 }

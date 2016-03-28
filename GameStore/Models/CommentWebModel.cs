@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace GameStore.Models
+{
+    public class CommentWebModel
+    {
+        public int Id { get; set; }
+
+        [StringLength(128)]
+        public string Name { get; set; }
+
+        [Required]
+        [StringLength(128)]
+        public string Body { get; set; }
+
+        [Column(TypeName = "smalldatetime")]
+        public DateTime CreationDate { get; set; }
+
+        public int GameId { get; set; }
+
+        public int? ParentCommentId { get; set; }
+
+        public virtual ICollection<CommentWebModel> ChildComments { get; set; }
+    }
+}

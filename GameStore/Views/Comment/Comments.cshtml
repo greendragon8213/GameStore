@@ -25,7 +25,7 @@
     }
 
     function OnSuccessNewComment() {
-        alert("NewComment был успешно выполнен.\n");
+        alert("AddNewComment был успешно выполнен.\n");
         var url = '@Url.Action("Details", "Games", new { gameId = @ViewBag.GameId })';
         window.location.href = url;
     }

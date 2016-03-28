@@ -1,25 +1,26 @@
-﻿using System.Web.Mvc;
-using GameStore.Data.Abstract;
-using GameStore.Data.Concrete;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using AutoMapper;
+using GameStore.BusinesLogic.Services.Interfaces;
+using GameStore.Models;
 
 namespace GameStore.Controllers
 {
     public class CommentController : Controller
     {
-        private readonly ICommentRepository _commentRepository;
+        private readonly ICommentService _commentService;
 
         public CommentController()
         {
-            _commentRepository = new CommentRepository(new GameStoreDbContext());
         }
 
-        public CommentController(ICommentRepository commentRepository)
+        public CommentController(ICommentService commentService)
         {
-            _commentRepository = commentRepository;
+            _commentService = commentService;
         }
 
         //
-        // GET: /Comment/
+        // GET: /CommentWebModel/
         public ActionResult Comments(int gameId)
         {
             ViewBag.GameId = gameId;
@@ -28,14 +29,15 @@ namespace GameStore.Controllers
 
         public JsonResult GetCommentsByGameId(int gameId)
         {
-            var comments = _commentRepository.GetCommentsByGameId(gameId);
-            return Json(comments, JsonRequestBehavior.AllowGet);
+            var comments = _commentService.GetCommentsTreeByGameId(gameId);
+            return Json(Mapper.Map<IEnumerable<CommentWebModel>>(comments),
+                JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public ActionResult NewComment(string content, int gameId, int? parentCommentId)
         {
-            _commentRepository.Add(content, gameId, parentCommentId);
+            _commentService.AddNewComment(content, gameId, parentCommentId);
             return RedirectToAction("Index", "Games");
         }
 

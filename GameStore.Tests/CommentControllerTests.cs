@@ -52,11 +52,11 @@ namespace GameStore.Tests
             var mock = new Mock<ICommentRepository>();
             //context
             int gameId = 44;
-            List<Comment> expectedCommentList = new List<Comment>()
+            List<CommentDataModel> expectedCommentList = new List<CommentDataModel>()
             {
-                new Comment(){Body = "first comment", Id = 1, GameId = gameId, ParentCommentId = 102, Name = "testN"},
-                new Comment(){Body = "second comment", Id = 2, GameId = gameId, ParentCommentId = null, Name = "testN"},
-                new Comment(){Body = "my own comment", Id = 3, GameId = gameId, ParentCommentId = 102, Name = "testN"}
+                new CommentDataModel(){Body = "first comment", Id = 1, GameId = gameId, ParentCommentId = 102, Name = "testN"},
+                new CommentDataModel(){Body = "second comment", Id = 2, GameId = gameId, ParentCommentId = null, Name = "testN"},
+                new CommentDataModel(){Body = "my own comment", Id = 3, GameId = gameId, ParentCommentId = 102, Name = "testN"}
             };
             mock.Setup(m => m.GetCommentsByGameId(gameId)).Returns(expectedCommentList);
             var controller = new CommentController(mock.Object);
@@ -77,7 +77,7 @@ namespace GameStore.Tests
             var mock = new Mock<ICommentRepository>();
             //context
             int gameId = -5;
-            List<Comment> expectedCommentList = null;
+            List<CommentDataModel> expectedCommentList = null;
             mock.Setup(m => m.GetCommentsByGameId(gameId)).Returns(expectedCommentList);
             var controller = new CommentController(mock.Object);
 

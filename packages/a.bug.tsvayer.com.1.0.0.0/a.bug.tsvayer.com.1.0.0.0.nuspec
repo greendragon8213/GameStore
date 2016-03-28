@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>a.bug.tsvayer.com</id>
+    <version>1.0.0.0</version>
+    <title>a.bug.tsvayer.com</title>
+    <authors>tsvayer.com</authors>
+    <owners>tsvayer.com</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A (nuget bug demonstration)</description>
+    <copyright>Copyright ©  2015</copyright>
+    <dependencies>
+      <dependency id="c.bug.tsvayer.com" version="1.0.0.0" />
+    </dependencies>
+  </metadata>
+</package>

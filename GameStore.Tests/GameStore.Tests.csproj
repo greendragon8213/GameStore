@@ -89,10 +89,6 @@
       <Project>{27bbdd91-b7a0-4ca4-8c53-ef62608761c3}</Project>
       <Name>GameStore.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GameStore.Model\GameStore.Model.csproj">
-      <Project>{742cbbe8-2e9d-42bb-8615-aa4c7361a61b}</Project>
-      <Name>GameStore.Model</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GameStore\GameStore.Web.csproj">
       <Project>{eec0ebf8-6ff2-4de4-a2a3-18c803579c9e}</Project>
       <Name>GameStore.Web</Name>

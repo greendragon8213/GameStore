@@ -137,8 +137,6 @@
   <ItemGroup>
     <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
-    <Compile Include="Controllers\CommentController.cs" />
-    <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MVC_Task2\BusketController.cs" />
     <Compile Include="Controllers\MVC_Task2\GameController.cs" />
@@ -178,7 +176,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\MVC_Task2\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -195,15 +192,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Games\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Games\Details.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Comment\Comments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Game\Games.cshtml" />

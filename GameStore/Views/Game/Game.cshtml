@@ -10,20 +10,29 @@
     <div>
         @Html.ActionLink("Download game", "Download", new { gameId = Model.Id })
     </div>
+    
+    <div>
+        @Html.ActionLink("Add to busket", "AddToOrder", new { gameId = Model.Id })
+    </div>
+   
 
     <table>
         <tr>
+            <td><p>@Html.DisplayNameFor(model => model.Publisher)</p></td>
             <td><p>@Html.DisplayNameFor(model => model.Id)</p></td>
             <td><p>@Html.DisplayNameFor(model => model.Key)</p></td>
             <td><p>@Html.DisplayNameFor(model => model.Name)</p></td>
             <td><p>@Html.DisplayNameFor(model => model.Description)</p></td>
-            <td></td>
+            <td><p>@Html.DisplayNameFor(model => model.Price)</p></td>
         </tr>
         <tr>
+            
+            <td><p>@Html.ActionLink("Publisher profile", "Publisher", "Publisher", new { companyName = Model.Publisher.CompanyName }, null)</p></td>
             <td><p>@Html.DisplayFor(model => model.Id)</p></td>
             <td><p>@Html.DisplayFor(model => model.Key)</p></td>
             <td><p>@Html.DisplayFor(model => model.Name)</p></td>
             <td><p>@Html.DisplayFor(model => model.Description)</p></td>
+            <td><p>@Html.DisplayFor(model => model.Price)</p></td>
         </tr>
     </table>
 

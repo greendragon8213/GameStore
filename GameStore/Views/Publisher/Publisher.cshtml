@@ -1,0 +1,36 @@
+﻿@model GameStore.Models.PublisherWebModel
+
+@{
+    ViewBag.Title = "Publisher";
+}
+
+<h2>Publisher</h2>
+
+<fieldset>
+    @*<legend>PublisherWebModel</legend>*@
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CompanyName):
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CompanyName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Description):
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HomePage):
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HomePage)
+    </div>
+</fieldset>
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@

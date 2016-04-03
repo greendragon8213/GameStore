@@ -1,0 +1,44 @@
+﻿@model GameStore.Models.PublisherWebModel
+
+@{
+    ViewBag.Title = "New";
+}
+<script src="~/Scripts/jquery-2.2.1.min.js"></script>
+<h2>Create new publisher:</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        <div>
+            @Html.LabelFor(model => model.CompanyName)
+            <div>
+                @Html.EditorFor(model => model.CompanyName)
+                @Html.ValidationMessageFor(model => model.CompanyName)
+            </div>
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.HomePage)
+            <div>
+                @Html.EditorFor(model => model.HomePage)
+                @Html.ValidationMessageFor(model => model.HomePage)
+            </div>
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Description)
+            <div>
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        @Html.AntiForgeryToken()
+
+        <div>
+            <div>
+                <input type="submit" value="Add new publisher" />
+            </div>
+        </div>
+    </div>
+}

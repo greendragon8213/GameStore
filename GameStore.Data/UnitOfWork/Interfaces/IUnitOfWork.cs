@@ -8,6 +8,9 @@ namespace GameStore.Data.UnitOfWork.Interfaces
         IBaseRepository<CommentDataModel> CommentRepository { get; }
         IBaseRepository<GameDataModel> GameRepository { get; }
         IBaseRepository<GenreDataModel> GenreRepository { get; }
+        IBaseRepository<PublisherDataModel> PublisherRepository { get; }
+        IBaseRepository<OrderDataModel> OrderRepository { get; }
+        IBaseRepository<OrderDetailsDataModel> OrderDetailsRepository { get; }
         IBaseRepository<PlatformTypeDataModel> PlatformRepository { get; }
         void Save();
     }

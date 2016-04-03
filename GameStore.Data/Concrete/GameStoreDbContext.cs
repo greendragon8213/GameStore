@@ -16,5 +16,11 @@ namespace GameStore.Data.Concrete
         public DbSet<GenreDataModel> Genres { get; set; }
 
         public DbSet<PlatformTypeDataModel> PlatformTypes { get; set; }
+
+        public DbSet<PublisherDataModel> Publishers { get; set; }
+
+        public DbSet<OrderDataModel> Orders { get; set; }
+
+        public DbSet<OrderDetailsDataModel> OrderDetails { get; set; }
     }
 }

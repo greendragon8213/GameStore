@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -45,6 +46,12 @@ namespace GameStore.Controllers.MVC_Task2
         public ViewResult Game(int gameId)
         {
             var game = Mapper.Map<GameWebModel>(_gameService.GetById(gameId));
+            ////var qqq = new OrderBLModel();
+            ////qqq = null;
+            ////ViewBag.Order = null;
+            ////Session["Order"] = new OrderBLModel();
+
+            ////qqq = (OrderBLModel)Session["Order"];
 
             return View(game);
         }
@@ -119,5 +126,35 @@ namespace GameStore.Controllers.MVC_Task2
         }
 
         #endregion
+
+        public ActionResult AddToOrder(int gameId)
+        {
+            var order = (OrderWebModel)Session["Order"];
+
+            if (order == null)
+            {
+                order = new OrderWebModel();
+                Session["Order"] = order;
+            }
+
+            var orderDetail = order.OrderDetails.FirstOrDefault(o => o.Id == gameId);
+
+            if (orderDetail != null)
+            {
+                orderDetail.Quantity++;
+            }
+            else
+            {
+                orderDetail = new OrderDetailsWebModel()
+                {
+                    Game = Mapper.Map<GameWebModel>(_gameService.GetById(gameId)),
+                    Quantity = 1
+                };
+
+                order.OrderDetails.Add(orderDetail);
+            }
+
+            return RedirectToAction("Index","Busket");
+        }
     }
 }

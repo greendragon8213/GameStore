@@ -23,8 +23,22 @@ namespace GameStore.Data.Entities
         [StringLength(8)]
         public string Key { get; set; }
 
+        //Add: money Price, smallint UnitsInStock, bit Discontinued.
+        public decimal Price { get; set; }
+
+        public short? UnitsInStock { get; set; }
+
+        public bool Discontinued { get; set; }
+
+        [ForeignKey("Publisher")]
+        public int PublisherId { get; set; }
+
+        public virtual PublisherDataModel Publisher { get; set; }
+
         public virtual ICollection<CommentDataModel> Comments { get; set; }
+
         public virtual ICollection<GenreDataModel> Genres { get; set; }
+
         public virtual ICollection<PlatformTypeDataModel> PlatformTypes { get; set; } 
 
         public GameDataModel()

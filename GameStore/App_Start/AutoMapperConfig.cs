@@ -16,10 +16,18 @@ namespace GameStore.App_Start
             Mapper.CreateMap<CommentWebModel, CommentBLModel>();
             Mapper.CreateMap<PlatformTypeWebModel, PlatformTypeBLModel>();
 
+            Mapper.CreateMap<PublisherWebModel, PublisherBLModel>();
+            Mapper.CreateMap<OrderWebModel, OrderBLModel>();
+            Mapper.CreateMap<OrderDetailsWebModel, OrderDetailsBLModel>();
+
             Mapper.CreateMap<GameBLModel, GameWebModel>();
             Mapper.CreateMap<GenreBLModel, GenreWebModel>();
             Mapper.CreateMap<CommentBLModel, CommentWebModel>();
             Mapper.CreateMap<PlatformTypeBLModel, PlatformTypeWebModel>();
+
+            Mapper.CreateMap<PublisherBLModel, PublisherWebModel>();
+            Mapper.CreateMap<OrderBLModel, OrderWebModel>();
+            Mapper.CreateMap<OrderDetailsBLModel, OrderDetailsWebModel>();
             #endregion
 
             #region Data <=> BL Models
@@ -28,10 +36,18 @@ namespace GameStore.App_Start
             Mapper.CreateMap<CommentDataModel, CommentBLModel>();
             Mapper.CreateMap<PlatformTypeDataModel, PlatformTypeBLModel>();
 
+            Mapper.CreateMap<PublisherDataModel, PublisherBLModel>();
+            Mapper.CreateMap<OrderDataModel, OrderBLModel>();
+            Mapper.CreateMap<OrderDetailsDataModel, OrderDetailsBLModel>();
+
             Mapper.CreateMap<GameBLModel, GameDataModel>();
             Mapper.CreateMap<GenreBLModel, GenreDataModel>();
             Mapper.CreateMap<CommentBLModel, CommentDataModel>();
             Mapper.CreateMap<PlatformTypeBLModel, PlatformTypeDataModel>();
+
+            Mapper.CreateMap<PublisherBLModel, PublisherDataModel>();
+            Mapper.CreateMap<OrderBLModel, OrderDataModel>();
+            Mapper.CreateMap<OrderDetailsBLModel, OrderDetailsDataModel>();
             #endregion
         }
     }

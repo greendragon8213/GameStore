@@ -35,7 +35,6 @@ namespace GameStore.BusinesLogic.Services
 
         public GameBLModel GetById(int gameId)
         {
-            //ToDo return comments...
             GameDataModel game = _unitOfWork.GameRepository.GetById(gameId);
             return Mapper.Map<GameBLModel>(game);
         }

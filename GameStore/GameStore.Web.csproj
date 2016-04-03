@@ -140,14 +140,19 @@
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MVC_Task2\BusketController.cs" />
     <Compile Include="Controllers\MVC_Task2\GameController.cs" />
+    <Compile Include="Controllers\MVC_Task2\PublisherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CommentWebModel.cs" />
     <Compile Include="Models\GameWebModel.cs" />
     <Compile Include="Models\GenreWebModel.cs" />
+    <Compile Include="Models\OrderDetailsWebModel.cs" />
+    <Compile Include="Models\OrderWebModel.cs" />
     <Compile Include="Models\PlatformTypeWebModel.cs" />
+    <Compile Include="Models\PublisherWebModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +219,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Game\NewComment.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Busket\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Publisher\Publisher.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Publisher\New.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

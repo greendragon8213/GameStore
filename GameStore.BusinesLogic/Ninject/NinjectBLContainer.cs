@@ -13,6 +13,8 @@ namespace GameStore.BusinesLogic.Ninject
             Bind<IUnitOfWork>().To<UnitOfWork>();
             Bind<IGameService>().To<GameService>();
             Bind<ICommentService>().To<CommentService>();
+            Bind<IPublisherService>().To<PublisherService>();
+            Bind<IOrderService>().To<OrderService>();
         }
     }
 }

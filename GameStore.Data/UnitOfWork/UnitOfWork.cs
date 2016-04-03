@@ -18,6 +18,9 @@ namespace GameStore.Data.UnitOfWork
         private IBaseRepository<GameDataModel> _gameRepository;
         private IBaseRepository<GenreDataModel> _genreRepository;
         private IBaseRepository<PlatformTypeDataModel> _platformRepository;
+        private IBaseRepository<OrderDataModel> _orderRepository;
+        private IBaseRepository<OrderDetailsDataModel> _orderDetailsRepository;
+        private IBaseRepository<PublisherDataModel> _publisherRepository;
         private IBaseRepository<CommentDataModel> _commentRepository;
 
         public UnitOfWork(DbContext context)
@@ -75,6 +78,45 @@ namespace GameStore.Data.UnitOfWork
                     _commentRepository = new BaseRepository<CommentDataModel>(_context);
                 }
                 return _commentRepository;
+            }
+        }
+
+        public IBaseRepository<OrderDataModel> OrderRepository
+        {
+            get
+            {
+
+                if (_orderRepository == null)
+                {
+                    _orderRepository = new BaseRepository<OrderDataModel>(_context);
+                }
+                return _orderRepository;
+            }
+        }
+
+        public IBaseRepository<OrderDetailsDataModel> OrderDetailsRepository
+        {
+            get
+            {
+
+                if (_orderDetailsRepository == null)
+                {
+                    _orderDetailsRepository = new BaseRepository<OrderDetailsDataModel>(_context);
+                }
+                return _orderDetailsRepository;
+            }
+        }
+
+        public IBaseRepository<PublisherDataModel> PublisherRepository
+        {
+            get
+            {
+
+                if (_publisherRepository == null)
+                {
+                    _publisherRepository = new BaseRepository<PublisherDataModel>(_context);
+                }
+                return _publisherRepository;
             }
         }
 

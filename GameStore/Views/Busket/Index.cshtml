@@ -1,0 +1,28 @@
+﻿@model GameStore.Models.OrderWebModel
+
+@{
+    ViewBag.Title = "Busket";
+}
+
+<div>
+    <h2>Busket</h2>
+    <table>
+        <tr>
+            <td><p>Quantity:</p></td>
+            <td><p>Discount:</p></td>
+            <td><p>GameName:</p></td>
+            <td><p>GamePrice:</p></td>
+        </tr>
+        @foreach (var item in Model.OrderDetails)
+        {
+            <tr>
+                <td><p>@Html.DisplayFor(name => item.Quantity)</p></td>
+                <td><p>@Html.DisplayFor(name => item.Discount)</p></td>
+                <td><p>@Html.DisplayFor(description => item.Game.Name)</p></td>
+                <td><p>@Html.DisplayFor(description => item.Game.Price)</p></td>
+            </tr>
+        }
+    </table>
+    TotalPrice: @Model.GetTotalPrice()
+    @Html.ActionLink("Buy","Buy")
+</div>

@@ -6,7 +6,7 @@ namespace GameStore.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Name is required!")]
         [StringLength(32)]
         public string Name { get; set; }
     }

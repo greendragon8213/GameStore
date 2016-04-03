@@ -7,15 +7,15 @@ namespace GameStore.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Key is required!")]
         [StringLength(32)]
         public string Key { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Name is required!")]
         [StringLength(128)]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Descr. is required!")]
         [StringLength(128)]
         public string Description { get; set; }
 

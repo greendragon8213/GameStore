@@ -1,0 +1,35 @@
+﻿@model GameStore.Models.GameWebModel
+
+@{
+    ViewBag.Title = "Game";
+}
+
+<div>
+    <h2>@Html.DisplayFor(model => model.Name)</h2>
+    
+    <div>
+        @Html.ActionLink("Download game", "Download", new { gameId = Model.Id })
+    </div>
+
+    <table>
+        <tr>
+            <td><p>@Html.DisplayNameFor(model => model.Id)</p></td>
+            <td><p>@Html.DisplayNameFor(model => model.Key)</p></td>
+            <td><p>@Html.DisplayNameFor(model => model.Name)</p></td>
+            <td><p>@Html.DisplayNameFor(model => model.Description)</p></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><p>@Html.DisplayFor(model => model.Id)</p></td>
+            <td><p>@Html.DisplayFor(model => model.Key)</p></td>
+            <td><p>@Html.DisplayFor(model => model.Name)</p></td>
+            <td><p>@Html.DisplayFor(model => model.Description)</p></td>
+        </tr>
+    </table>
+
+    <div>
+        @Html.ActionLink("Show comments", "Comments", new { gameId = Model.Id })
+    </div>
+
+</div>
+

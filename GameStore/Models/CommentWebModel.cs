@@ -9,16 +9,19 @@ namespace GameStore.Models
     {
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Name is required!")]
         [StringLength(128)]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Body is required!")]
         [StringLength(128)]
         public string Body { get; set; }
 
         [Column(TypeName = "smalldatetime")]
         public DateTime CreationDate { get; set; }
 
+        //ToDo
+        [Required(ErrorMessage = "GameId is required!")]
         public int GameId { get; set; }
 
         public int? ParentCommentId { get; set; }

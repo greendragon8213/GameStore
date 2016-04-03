@@ -1,0 +1,35 @@
+﻿@model IEnumerable<GameStore.Models.CommentWebModel>
+@*<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>*@  
+
+<script src="~/Scripts/jquery-2.2.1.min.js"></script>
+
+<script type="text/javascript">
+    function AddParent(id) {
+        alert("You will respond to comment with id = " + id);
+        $("input[name*='parentCommentId']").val(id);
+    }
+</script>
+
+<h3>Comments:</h3>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            @item.Name |
+            @item.Body |
+            @item.CreationDate |
+            <a href="javascript:AddParent(@item.Id)">Respond</a>
+        </li>
+    }
+</ul>
+
+@using (Html.BeginForm("NewComment", "Game", FormMethod.Get))
+{
+    <input type="hidden" name="parentCommentId" />
+    <input type="hidden" name="gameId" value=@ViewBag.GameId />
+    <input type="submit" value="Add new comment" />
+}
+@*@{Html.RenderPartial("NewComment");}*@
+    

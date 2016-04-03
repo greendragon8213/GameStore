@@ -140,6 +140,7 @@
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MVC_Task2\GameController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -172,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\MVC_Task2\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -197,6 +199,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Comment\Comments.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Game\Games.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Game\Comments.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Game\Game.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Game\New.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Game\NewComment.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

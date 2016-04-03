@@ -1,0 +1,25 @@
+﻿@model GameStore.Models.CommentWebModel
+
+@using (Html.BeginForm("NewComment", "Game", FormMethod.Post))
+{
+    <input type="hidden" name="gameId" value=@ViewBag.GameId />
+    <input type="hidden" name="parentCommentId" value=@ViewBag.ParentCommentId>
+    <h4>Add new comment:</h4>
+    <div>
+        <div>
+            @Html.Label("Name:")
+            <div>
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+        <div>
+            @Html.Label("Body:")
+            <div>
+                @Html.EditorFor(model => model.Body)
+                @Html.ValidationMessageFor(model => model.Body)
+            </div>
+        </div>
+    </div>
+    <input type="submit" value="Send" />
+}

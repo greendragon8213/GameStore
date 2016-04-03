@@ -1,0 +1,44 @@
+﻿@model GameStore.Models.GameWebModel
+
+@{
+    ViewBag.Title = "New";
+}
+<script src="~/Scripts/jquery-2.2.1.min.js"></script>
+<h2>Add new game:</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        <div>
+            @Html.LabelFor(model => model.Name)
+            <div>
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Key)
+            <div>
+                @Html.EditorFor(model => model.Key)
+                @Html.ValidationMessageFor(model => model.Key)
+            </div>
+        </div>
+        
+        <div>
+            @Html.LabelFor(model => model.Description)
+            <div>
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        @Html.AntiForgeryToken()
+
+        <div>
+            <div>
+                <input type="submit" value="Add new game" />
+            </div>
+        </div>
+    </div>
+}

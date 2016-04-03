@@ -1,0 +1,28 @@
+﻿@model IEnumerable<GameStore.Models.GameWebModel>
+
+@{
+    ViewBag.Title = "Games";
+}
+
+<div>
+    <h2>Games</h2>
+    @Html.ActionLink("Add new game", "New")
+    <table>
+        <tr>
+            <td><p>@Html.DisplayNameFor(model => model.Id)</p></td>
+            <td><p>@Html.DisplayNameFor(model => model.Name)</p></td>
+            <td><p>@Html.DisplayNameFor(model => model.Description)</p></td>
+            <td></td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><p>@Html.DisplayFor(id => item.Id)</p></td>
+                <td><p>@Html.DisplayFor(name => item.Name)</p></td>
+                <td><p>@Html.DisplayFor(description => item.Description)</p></td>
+                <td><p>@Html.ActionLink("Show more", "Game", new { gameId = item.Id })</p></td>
+            </tr>
+        }
+    </table>
+</div>
+

@@ -32,11 +32,16 @@ namespace GameStore.Controllers.MVC_Task2
         public ActionResult Buy()
         {
             var order = (OrderWebModel)Session["Order"];
-            _orderService.Add(Mapper.Map<OrderBLModel>(order));
+            bool resultIsSuccess = _orderService.Add(Mapper.Map<OrderBLModel>(order));
 
             Session["Order"] = null;
 
-            return RedirectToAction("Games", "Game");
+            if (resultIsSuccess)
+                return Content("All items in your busket were bought");
+            else
+            {
+                return Content("Items in your busket were NOT bought!");
+            }
         }
 
     }

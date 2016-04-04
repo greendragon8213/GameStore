@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <style>
+        ul.nav li {
+            display: inline-block;
+            margin-right: 5px;
+        }
+    </style>
+    <script src="~/Scripts/jquery-2.2.1.min.js"></script>
+</head>
+
+<body>
+    <nav>
+        <ul class="nav">
+            <li >@Html.ActionLink("Home", "Index", "Home")</li>
+            <li >@Html.ActionLink("Games", "Games", "Game")</li>
+            <li >@Html.ActionLink("Add new game", "New", "Game")</li>
+            <li >@Html.ActionLink("Add new publisher", "New", "Publisher")</li>
+            <li >@Html.ActionLink("Busket", "Index", "Busket")</li>
+        </ul>
+    </nav>
+    @RenderBody()
+</body>
+</html>

@@ -203,9 +203,6 @@
     <Content Include="Views\Game\Game.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Game\New.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Game\NewComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +213,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Publisher\New.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Game\New.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

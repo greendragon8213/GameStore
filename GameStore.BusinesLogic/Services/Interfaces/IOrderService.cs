@@ -9,7 +9,7 @@ namespace GameStore.BusinesLogic.Services.Interfaces
 {
     public interface IOrderService
     {
-        void Add(OrderBLModel order);
+        bool Add(OrderBLModel order);
         OrderBLModel GetOrderByCustomerId(int id);
         OrderBLModel GetOrderByOrderId(int id);
     }

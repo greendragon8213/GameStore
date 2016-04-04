@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using GameStore.BusinesLogic.BLModels;
@@ -17,18 +18,25 @@ namespace GameStore.BusinesLogic.Services
             _unitOfWork = unitOfWork;
         }
 
-        public void Add(OrderBLModel order)
+        public bool Add(OrderBLModel order)
         {
             OrderDataModel orderToAdd = Mapper.Map<OrderDataModel>(order);
-            // ToDo Save order to database
-            /*_unitOfWork.OrderRepository.Create(orderToAdd);
 
-            var orderDetails = Mapper.Map<IEnumerable<OrderDetailsDataModel>>(order.OrderDetails);
+            var orderDetailsToAdd = orderToAdd.OrderDetails;
+            orderToAdd.OrderDetails = null;
+            orderToAdd.OrderDate = DateTime.Now;
 
-            foreach (var orderDetail in orderDetails)
+            _unitOfWork.OrderRepository.Create(orderToAdd);
+
+            foreach (var item in orderDetailsToAdd)
             {
-                _unitOfWork.OrderDetailsRepository.Create(orderDetail);
-            }*/
+                item.ProductId = item.Game.Id;
+                item.Game = null;
+                item.OrderId = orderToAdd.Id;
+                _unitOfWork.OrderDetailsRepository.Create(item);
+            }
+
+            return _unitOfWork.OrderRepository.GetById(orderToAdd.Id) != null;
         }
 
         public OrderBLModel GetOrderByCustomerId(int id)
